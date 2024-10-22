@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "modular-calc-jfy"
+name = "modular_calc_jfy"
 version = "0.1.0"
 description = ""
 authors = ["Jan Meineke <jan.meineke@mailbox.org>"]
