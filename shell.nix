@@ -4,6 +4,7 @@
       pandoc
       poetry
       python312
+      qtcreator
     ];
 
   shellHook = ''
