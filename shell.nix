@@ -3,8 +3,11 @@
     nativeBuildInputs = with pkgs; [
       pandoc
       poetry
+      neovim
       python312
+      python312Packages.pyqt6
       qtcreator
+      stdenv.cc.cc.lib
     ];
 
   shellHook = ''
