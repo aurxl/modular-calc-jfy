@@ -13,3 +13,7 @@ PyQt6 = "^6.7.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+jfy = "modular_calc_jfy.__main__:main"
+
