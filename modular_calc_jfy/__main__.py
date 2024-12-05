@@ -19,24 +19,14 @@ by the official publisher or one of it's offical distributors.
 --------------------------------------------------------------
 
 This software is part of the modular calculator 'JustForYou',
-a software project for compter students at BSZET Dresden.
+a software project for computer students at BSZET Dresden.
 """
-
-from PyQt6 import QtWidgets, uic
-from pathlib import Path
 
 import sys
 
+from PyQt6 import QtWidgets
+from window import MainWindow
 
-UI_FILE = f"{Path(__file__).parent.resolve()}/window.ui"
-
-
-class MainWindow(QtWidgets.QMainWindow):
-
-    def __init__(self):
-        super(MainWindow, self).__init__(None)
-        uic.loadUi(UI_FILE, self)
-         
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
