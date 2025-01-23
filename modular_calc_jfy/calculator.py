@@ -17,7 +17,7 @@ class Calculator:
                 "output": None,
             }
 
-    def calc(self, expression: str="") -> str:
+    def calc(self, expression: str="") -> float:
         expression = self.__validate_expression(expression)
         evaluated = eval(expression)
 
@@ -25,11 +25,11 @@ class Calculator:
         self.last_operation["input"] = expression
         self.last_operation["output"] = evaluated
 
-        return str(evaluated)
+        return float(evaluated)
 
     @staticmethod
     def __validate_expression(expression: str="") -> str:
-        valid_expression_pattern = "^[0-9+\-*()/\s]+$"
+        valid_expression_pattern = "^[0-9\.+\-*()/\s]+$"
         
         if re.match(valid_expression_pattern, expression):
             return expression
