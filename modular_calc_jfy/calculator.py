@@ -2,7 +2,7 @@ import datetime
 import re
 
 
-class InvalidExpressionError(Exceptio):
+class InvalidExpressionError(Exception):
     """Given Expression is not valid."""
 
 
