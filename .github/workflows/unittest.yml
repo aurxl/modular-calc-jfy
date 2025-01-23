@@ -23,4 +23,4 @@ jobs:
           poetry install --sync
       - name: Running Unittests
         run: |
-          poetry tun pytest tests/*
+          poetry run pytest tests/*
