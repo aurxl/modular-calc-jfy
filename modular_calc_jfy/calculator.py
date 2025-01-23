@@ -1,4 +1,10 @@
 import datetime
+import re
+
+
+class InvalidExpressionError(Exception):
+    """Given Expression is not valid."""
+
 
 class Calculator:
     """
@@ -23,7 +29,11 @@ class Calculator:
 
     @staticmethod
     def __validate_expression(expression: str="") -> str:
-        return expression
+        valid_expression_pattern = "^[0-9+\-*()/\s]+$"
+        
+        if re.match(valid_expression_pattern, expression):
+            return expression
+        raise InvalidExpressionError(f"Invalid Expression, please evaluate syntax:\n{expression}")
 
     def get_last_operation() -> str:
         return self.last_operation
