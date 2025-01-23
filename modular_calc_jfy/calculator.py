@@ -1,12 +1,31 @@
+import datetime
 
 class Calculator:
     """
-    
+    Wrapping simple math functions into Pythons eval    
     """
-    def calc(expression: str="") -> float:
-        pass
+    
+    last_operation = {
+                "time": None,
+                "input": None,
+                "output": None,
+            }
 
-    def __validate_expresion(expression: str="") -> str:
-        pass
+    def calc(self, expression: str="") -> str:
+        expression = self.__validate_expression(expression)
+        evaluated = eval(expression)
+
+        self.last_operation["time"] = datetime.datetime.now()
+        self.last_operation["input"] = expression
+        self.last_operation["output"] = evaluated
+
+        return str(evaluated)
+
+    @staticmethod
+    def __validate_expression(expression: str="") -> str:
+        return expression
+
+    def get_last_operation() -> str:
+        return self.last_operation
 
 
