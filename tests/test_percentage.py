@@ -1,6 +1,6 @@
 import pytest
 
-from modular_calc_jfy.percentage import Percentage
+from modular_calc_jfy.modules.percentage import Percentage
 
 @pytest.mark.parametrize("input_value,input_percentage,expected",
     [
