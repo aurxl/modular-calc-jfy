@@ -21,11 +21,12 @@ class Test_Calculator(unittest.TestCase):
                 ("3*3", 9),
                 ("(15-5)*3", 30),
                 ("25/5", 5),
-                ("(100/4)*5", 125)
+                ("(100/4)*5", 125),
+                ("-100/(-27.5--2.5)", 4)
             ]
 
         for test_case in test_cases:
-            self.assertEqual(self.calculator.calc(test_case[0]), test_case[1])
+            self.assertAlmostEqual(self.calculator.calc(test_case[0]), test_case[1])
 
     def test_calc_invalid_input(self):
         test_cases = [
