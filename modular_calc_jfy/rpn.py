@@ -40,7 +40,7 @@ class ReversePolishNotation:
         open bracket. Unary operators have the highest priority to be associated with
         the last number in queue.
         """
-        tokens = re.findall('[0-9]+[.]?[0-9]+|[0-9]+|[+\-*\/()]', expr)
+        tokens = re.findall('[0-9]+[.]?[0-9]+|[0-9]+|[+\\-*\\/()]', expr)
         output_queue = []
         operator_stack = []
         unary_condition = True
@@ -66,7 +66,7 @@ class ReversePolishNotation:
                 unary_condition = False
         while operator_stack:
             output_queue.append(operator_stack.pop())
-    
+ 
         return output_queue
 
     @classmethod
@@ -107,7 +107,9 @@ class ReversePolishNotation:
 
 
 if __name__ == "__main__":
-    expr = "-100/(-27.5--2.5)"
+    expr = "-1+(-10/3*(15/10-2.033)-19*6.5/6)"
     rpn = ReversePolishNotation.build(expr)
-    print(f"rpn: {ReversePolishNotation.eval(rpn)}")
-    print(f"eval: {eval(expr)}")
+
+    print(f"rpn: {''.join(rpn)}")
+    print(f"rpn eval:    {ReversePolishNotation.eval(rpn)}")
+    print(f"python eval: {eval(expr)}")
