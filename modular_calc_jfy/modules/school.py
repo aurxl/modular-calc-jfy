@@ -1,57 +1,34 @@
-class School:
-    """Modul für die Notenberechnung"""
-
+class SchoolGrades:
     @staticmethod
-    def calculate(grades, better_grade=False):
-        """Berechnet die Durchschnittsnote und gibt sie gerundet zurück."""
-        if not isinstance(grades, (list, tuple)) or not grades:
-            return "Fehler: Ungültige Eingabe. Liste mit Noten erwartet."
+    def calculate(*args) -> dict:
+        """Berechnet die Noten und gibt sie als Dictionary zurück."""
+        if not args:
+            raise ValueError("Es wurden keine Noten übergeben.")
+        
+        grades = list(args)
 
+        # Überprüfung, ob alle Werte Zahlen sind
         try:
-            grades = [float(g) for g in grades] 
+            grades = [float(g) for g in grades]
         except ValueError:
-            return "Fehler: Alle Werte müssen Zahlen sein."
+            raise ValueError("Alle Werte müssen Zahlen sein.")
 
-        if any(g < 1 or g > 6 for g in grades):  
-            return "Fehler: Noten müssen zwischen 1 und 6 liegen."
+        # Überprüfung der Noten auf Gültigkeit (zwischen 1 und 6)
+        if any(g < 1 or g > 6 for g in grades):
+            raise ValueError("Noten müssen zwischen 1 und 6 liegen.")
 
         total = sum(grades)
         count = len(grades)
         average = total / count
-        rounded_avg = round(average, 2)  
-
-        # Zeugnisnote runden (1 Dezimalstelle, dann ganze Zahl)
-        final_grade = round(average)
-
-        # Checkbox "Bessere Note?" aktiv?
-        if better_grade and final_grade > 1:
-            final_grade -= 1  
+        rounded_avg = round(average, 6)  # Genauigkeit auf 6 Dezimalstellen, wie im Test erwartet
 
         return {
-            "Anzahl": count,
-            "Summe": total,
-            "Durchschnitt": rounded_avg,
-            "Zeugnisnote": final_grade
+            "count": count,
+            "sum": total,
+            "avg": rounded_avg
         }
 
-class SchoolGrades:
-    @staticmethod
-    def calculate(*args) -> dict:
-        """Calculating School Grades
-        
-        raise ValueError when input is invalid
-
-        output as follows:
-        dict = {
-            'count' = 0,
-            'sum' = 0,
-            'avg' = 0,
-        }
-        """
-        return dict()
-  
     @staticmethod
     def __validate(grades: list) -> list:
-        """Validate input"""
+        """Validierung der Noten (optional für zusätzliche Checks)."""
         return grades
-
