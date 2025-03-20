@@ -14,19 +14,19 @@ def test_add_percentage(input_value, input_percentage, expected):
 
 @pytest.mark.parametrize("input_value,input_percentage,expected",
     [
-        (125, 0.81, 226.25),
+        (125, 0.81, 23.75),
         (15, 0.33, 10.05),
         (50, 0.12, 44),
     ]
 )
 def test_sub_percentage(input_value, input_percentage, expected):
-    assert pytest.approx(Percentage.add_percentage(input_value, input_percentage)) == expected
+    assert pytest.approx(Percentage.sub_percentage(input_value, input_percentage)) == expected
 
 @pytest.mark.parametrize("input_value,input_share,expected",
     [
         (100, 0.25, 25),
         (50, 0.2, 10),
-        (80, 0.625, 5),
+        (80, 0.625, 50),
     ]
 )
 def test_percentage_of(input_value, input_share, expected):
@@ -36,11 +36,11 @@ def test_percentage_of(input_value, input_share, expected):
     [
         (30, 15, 0.5),
         (50, 10, 0.2),
-        (80, 5, 0.625),
+        (80, 4, 0.05),
     ]
 )
 def test_percentage(input_g, input_w, expected_p):
-    assert pytest.approx(Percentage.percentage_of(input_g, input_w)) == expected_p
+    assert pytest.approx(Percentage.percentage(input_g, input_w)) == expected_p
 
 @pytest.mark.parametrize("input_net,expected",
     [
