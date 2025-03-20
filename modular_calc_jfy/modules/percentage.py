@@ -2,9 +2,14 @@ class Percentage:
     """Modul für die Prozentrechnung"""
 
     @staticmethod
+    def percentage_of(value: float, percent: float) -> float:
+        """Berechnet den Prozentsatz eines Wertes."""
+        return (value * percent) / 100
+
+    @staticmethod
     def add_percentage(value: float, percent: float) -> float:
         """Erhöht einen Wert um einen bestimmten Prozentsatz."""
-        return value * (1 + percent / 100)
+        return value + (value * percent)
 
     @staticmethod
     def sub_percentage(value: float, percent: float) -> float:
@@ -18,11 +23,9 @@ class Percentage:
         return (value * percent) / 100
 
     @staticmethod
-    def percentage(base_value: float, part_value: float) -> float:
-        """Berechnet, wie viel Prozent part_value von base_value ist."""
-        if base_value == 0:
-            raise ValueError("Der Grundwert darf nicht 0 sein.")
-        return (part_value / base_value) * 100
+    def percentage(value: float, percentage_value: float) -> float:
+        """Berechnet den Prozentsatz eines Wertes basierend auf einem anderen Wert."""
+        return (percentage_value / value) * 100
 
     @staticmethod
     def gross(net_value: float, tax_rate: float = 19) -> float:
