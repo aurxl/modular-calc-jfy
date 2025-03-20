@@ -1,4 +1,5 @@
 class Percentage:
+<<<<<<< HEAD
     """Modul für die Prozentrechnung"""
 
     @staticmethod
@@ -25,3 +26,29 @@ class Percentage:
     def percentage_value(base_value: float, percent: float) -> float:
         """Berechnet den Wert eines gegebenen Prozentsatzes vom Grundwert."""
         return (base_value * percent) / 100
+=======
+    @staticmethod
+    def add_percentage() -> float:
+        pass
+
+    @staticmethod
+    def sub_percentage() -> float:
+        pass
+
+    @staticmethod
+    def percentage_of() -> float:
+        pass
+
+    @staticmethod
+    def percentage() -> float:
+        pass
+
+    @staticmethod
+    def gross() -> float:
+        pass
+
+    @staticmethod
+    def net() -> float:
+        pass
+
+>>>>>>> 76aebb006f4e38b9dec3ddb254312b26f2ab3ab4
