@@ -4,7 +4,7 @@ from modular_calc_jfy.modules.school import SchoolGrades
 
 @pytest.mark.parametrize("args,expected,",
     [
-        ((3, 1, 4), {"count": 3, "sum": 11, "avg": 2.666665}),
+        ((3, 1, 4), {"count": 3, "sum": 8, "avg": 2.666665}),
         ((1, 1, 4, 5, 2), {"count": 5, "sum": 13, "avg": 2.6}),
     ]
 )

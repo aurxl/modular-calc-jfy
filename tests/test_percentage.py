@@ -50,7 +50,7 @@ def test_percentage(input_g, input_w, expected_p):
     ]
 )
 def test_gross(input_net,expected):
-    assert pytest.approx(Percentage.gross(input_net, input_w)) == expected_p
+    assert pytest.approx(Percentage.gross(input_net)) == expected
 
 @pytest.mark.parametrize("input_gross,expected",
     [
@@ -60,5 +60,5 @@ def test_gross(input_net,expected):
     ]
 )
 def test_net(input_gross,expected):
-    assert pytest.approx(Percentage.net(input_gross, input_w)) == expected_p
+    assert pytest.approx(Percentage.net(input_gross)) == expected
 
