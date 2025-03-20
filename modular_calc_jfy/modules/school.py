@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class School:
     """Modul für die Notenberechnung"""
 
@@ -34,7 +33,7 @@ class School:
             "Durchschnitt": rounded_avg,
             "Zeugnisnote": final_grade
         }
-=======
+
 class SchoolGrades:
     @staticmethod
     def calculate(*args) -> dict:
@@ -56,4 +55,3 @@ class SchoolGrades:
         """Validate input"""
         return grades
 
->>>>>>> 76aebb006f4e38b9dec3ddb254312b26f2ab3ab4
