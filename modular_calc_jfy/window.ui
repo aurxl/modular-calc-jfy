@@ -66,107 +66,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="result_list">
-    <property name="geometry">
-     <rect>
-      <x>480</x>
-      <y>0</y>
-      <width>500</width>
-      <height>651</height>
-     </rect>
-    </property>
-    <property name="title">
-     <string>Ergebnisliste</string>
-    </property>
-    <widget class="QTableWidget" name="table_calculations">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>20</y>
-       <width>500</width>
-       <height>631</height>
-      </rect>
-     </property>
-     <property name="mouseTracking">
-      <bool>false</bool>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
-     </property>
-     <property name="dragEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="rowCount">
-      <number>3</number>
-     </property>
-     <property name="columnCount">
-      <number>3</number>
-     </property>
-     <row/>
-     <row/>
-     <row/>
-     <column>
-      <property name="text">
-       <string>Datum</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Eingabewerte</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Ergebnis</string>
-      </property>
-     </column>
-     <item row="0" column="0">
-      <property name="text">
-       <string>01.12.2024</string>
-      </property>
-     </item>
-     <item row="0" column="1">
-      <property name="text">
-       <string>5 + 3</string>
-      </property>
-     </item>
-     <item row="0" column="2">
-      <property name="text">
-       <string>8</string>
-      </property>
-     </item>
-     <item row="1" column="0">
-      <property name="text">
-       <string>01.12.2024</string>
-      </property>
-     </item>
-     <item row="1" column="1">
-      <property name="text">
-       <string>10 - 2</string>
-      </property>
-     </item>
-     <item row="1" column="2">
-      <property name="text">
-       <string>8</string>
-      </property>
-     </item>
-     <item row="2" column="0">
-      <property name="text">
-       <string>01.12.2024</string>
-      </property>
-     </item>
-     <item row="2" column="1">
-      <property name="text">
-       <string>6 * 7</string>
-      </property>
-     </item>
-     <item row="2" column="2">
-      <property name="text">
-       <string>42</string>
-      </property>
-     </item>
-    </widget>
-   </widget>
    <widget class="QGroupBox" name="bottom_buttons">
     <property name="geometry">
      <rect>
@@ -218,7 +117,7 @@
       <string>Beenden</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_load_3">
+    <widget class="QPushButton" name="button_open_auxcalc">
      <property name="geometry">
       <rect>
        <x>350</x>
@@ -452,7 +351,7 @@
       <string>8</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="calc_btn_right">
+    <widget class="QPushButton" name="calc_btn_bracketR">
      <property name="geometry">
       <rect>
        <x>370</x>
@@ -462,7 +361,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>--&gt;</string>
+      <string>)</string>
      </property>
     </widget>
     <widget class="QPushButton" name="calc_btn_9">
@@ -491,7 +390,7 @@
       <string>7</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="calc_btn_left">
+    <widget class="QPushButton" name="calc_btn_bracketL">
      <property name="geometry">
       <rect>
        <x>280</x>
@@ -501,7 +400,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>&lt;--</string>
+      <string>(</string>
      </property>
     </widget>
     <widget class="QLineEdit" name="calc_input">
@@ -509,7 +408,7 @@
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>431</width>
+       <width>441</width>
        <height>20</height>
       </rect>
      </property>
@@ -527,6 +426,66 @@
       <string>TextLabel</string>
      </property>
     </widget>
+   </widget>
+   <widget class="QTableWidget" name="table_calculations">
+    <property name="geometry">
+     <rect>
+      <x>480</x>
+      <y>20</y>
+      <width>500</width>
+      <height>631</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="dragEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="rowCount">
+     <number>0</number>
+    </property>
+    <property name="columnCount">
+     <number>4</number>
+    </property>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="horizontalHeaderStretchLastSection">
+     <bool>true</bool>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Datum</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Eingabewerte</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Ergebnis</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Modul</string>
+     </property>
+    </column>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

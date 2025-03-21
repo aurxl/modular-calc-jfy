@@ -1,3 +1,8 @@
+[![Unittest](https://github.com/aurxl/modular-calc-jfy/actions/workflows/unittest.yml/badge.svg)](https://github.com/aurxl/modular-calc-jfy/actions/workflows/unittest.yml)
+[![Pylint](https://github.com/aurxl/modular-calc-jfy/actions/workflows/pylint.yml/badge.svg)](https://github.com/aurxl/modular-calc-jfy/actions/workflows/pylint.yml)
+
+---
+
 # Rechnermodul 'JustForYou'
 Projektteilnehmer:
 - Sarah Zimmermann
