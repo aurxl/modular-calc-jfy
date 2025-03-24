@@ -20,6 +20,7 @@ jfy = "modular_calc_jfy.__main__:main"
 
 [tool.poetry-pyinstaller-plugin.include]
 "modular_calc_jfy/*" = "."
+"styles" = "."
 
 [tool.poetry-pyinstaller-plugin.scripts]
 modular_calc_jfy = { source = "modular_calc_jfy/__main__.py", type = "onefile", windowed = true }
