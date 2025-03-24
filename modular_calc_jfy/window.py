@@ -2,7 +2,19 @@ import sys
 from pathlib import Path
 from PyQt6 import QtWidgets, uic
 
-UI_FILE = f"{Path(__file__).parent.resolve()}/window.ui"
+
+# Determine correct path for dev and prod
+# MEIPASS is the dir where the EXE is running
+def determine_MEIPASS(path:str):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = path
+    return base_path
+
+UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
+AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
+
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
