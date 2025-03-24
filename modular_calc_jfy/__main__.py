@@ -25,7 +25,7 @@ a software project for computer students at BSZET Dresden.
 import sys
 
 from PyQt6 import QtWidgets
-from window import MainWindow
+from modular_calc_jfy.window import MainWindow
 
 
 def main():

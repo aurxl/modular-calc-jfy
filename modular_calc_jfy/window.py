@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore
-from calculator import Calculator, InvalidExpressionError
+from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
 
 UI_FILE = f"{Path(__file__).parent.resolve()}/window.ui"
 AUX_UI_FILE = f"{Path(__file__).parent.resolve()}/aux_calc.ui"
