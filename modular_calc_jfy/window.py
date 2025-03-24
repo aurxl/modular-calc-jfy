@@ -188,7 +188,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def set_system_theme(self):
         self.theme = "System"
-        self.app.setStyleSheet(None)
+        self.app.setStyleSheet(f"QWidget {{font: {self.app.font().pointSize()}pt {self.app.font().family()};}}")
 
     def theme_dark(self):
         self.set_theme(DARK_STYLE)
@@ -200,13 +200,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.set_theme(CONSOLE_STYLE)
 
     def set_font_type(self, type:str):
+        contents = ""
         self.app.setFont(QtGui.QFont(type, self.app.font().pointSize()))
         
         if self.theme != "System":
             file = QtCore.QFile(self.theme)
             file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
-            contents = file.readAll().data().decode() + f"QWidget {{font: {self.app.font().pointSize()}pt {type};}}"
-            self.app.setStyleSheet(contents)
+            contents = file.readAll().data().decode()
+
+        self.app.setStyleSheet(contents + f"QWidget {{font: {self.app.font().pointSize()}pt {type};}}")
 
     def font_arial(self):
         self.set_font_type("Arial")
@@ -221,13 +223,15 @@ class MainWindow(QtWidgets.QMainWindow):
         self.set_font_type("Times New Roman")
 
     def set_font_size(self, size:str):
+        contents = ""
         self.app.setFont(QtGui.QFont(self.app.font().family(), size))
 
         if self.theme != "System":
             file = QtCore.QFile(self.theme)
             file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
-            contents = file.readAll().data().decode() + f"QWidget {{font: {size}pt {self.app.font().family()};}}"
-            self.app.setStyleSheet(contents)
+            contents = file.readAll().data().decode()
+
+        self.app.setStyleSheet(contents + f"QWidget {{font: {size}pt {self.app.font().family()};}}")
 
     def font_10(self):
         self.set_font_size(10)
