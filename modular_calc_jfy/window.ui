@@ -446,7 +446,7 @@
      <bool>false</bool>
     </property>
     <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
@@ -494,23 +494,137 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuEinstellungen">
     <property name="title">
      <string>Einstellungen</string>
     </property>
+    <widget class="QMenu" name="menuAnsicht">
+     <property name="title">
+      <string>Ansicht</string>
+     </property>
+     <addaction name="action_system"/>
+     <addaction name="action_dark"/>
+     <addaction name="action_light"/>
+     <addaction name="action_console"/>
+    </widget>
+    <widget class="QMenu" name="menuFont">
+     <property name="title">
+      <string>Font</string>
+     </property>
+     <widget class="QMenu" name="menuArt">
+      <property name="title">
+       <string>Art</string>
+      </property>
+      <addaction name="action_arial"/>
+      <addaction name="action_sans_serif"/>
+      <addaction name="action_helvetica"/>
+      <addaction name="action_times_new_roman"/>
+     </widget>
+     <widget class="QMenu" name="menuGr_e">
+      <property name="title">
+       <string>Größe</string>
+      </property>
+      <addaction name="action_10"/>
+      <addaction name="action_12"/>
+      <addaction name="action_14"/>
+      <addaction name="action_16"/>
+     </widget>
+     <addaction name="menuGr_e"/>
+     <addaction name="menuArt"/>
+    </widget>
+    <addaction name="menuAnsicht"/>
+    <addaction name="menuFont"/>
    </widget>
-   <widget class="QMenu" name="menuAbout">
+   <widget class="QMenu" name="menu_about">
     <property name="title">
      <string>Über Uns</string>
     </property>
+    <addaction name="action_team"/>
+    <addaction name="action_software"/>
+    <addaction name="action_copyright"/>
    </widget>
    <addaction name="menuEinstellungen"/>
-   <addaction name="menuAbout"/>
+   <addaction name="menu_about"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_team">
+   <property name="text">
+    <string>Team</string>
+   </property>
+  </action>
+  <action name="action_software">
+   <property name="text">
+    <string>Software</string>
+   </property>
+  </action>
+  <action name="action_copyright">
+   <property name="text">
+    <string>Copyright</string>
+   </property>
+  </action>
+  <action name="action_dark">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="action_light">
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="action_console">
+   <property name="text">
+    <string>Console</string>
+   </property>
+  </action>
+  <action name="action_system">
+   <property name="text">
+    <string>System</string>
+   </property>
+  </action>
+  <action name="action_arial">
+   <property name="text">
+    <string>Arial</string>
+   </property>
+  </action>
+  <action name="action_sans_serif">
+   <property name="text">
+    <string>Sans Serif</string>
+   </property>
+  </action>
+  <action name="action_12">
+   <property name="text">
+    <string>12</string>
+   </property>
+  </action>
+  <action name="action_10">
+   <property name="text">
+    <string>10</string>
+   </property>
+  </action>
+  <action name="action_14">
+   <property name="text">
+    <string>14</string>
+   </property>
+  </action>
+  <action name="action_helvetica">
+   <property name="text">
+    <string>Helvetica</string>
+   </property>
+  </action>
+  <action name="action_times_new_roman">
+   <property name="text">
+    <string>Times New Roman</string>
+   </property>
+  </action>
+  <action name="action_16">
+   <property name="text">
+    <string>16</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
