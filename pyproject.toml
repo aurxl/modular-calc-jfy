@@ -9,6 +9,7 @@ readme = "README.md"
 python = ">=3.12"
 PyQt6 = "^6.7.1"
 pytest = "^8.3.4"
+pycryptodome = "^3.22.0"
 
 
 [build-system]
@@ -20,6 +21,7 @@ jfy = "modular_calc_jfy.__main__:main"
 
 [tool.poetry-pyinstaller-plugin.include]
 "modular_calc_jfy/*" = "."
+"styles" = "."
 
 [tool.poetry-pyinstaller-plugin.scripts]
 modular_calc_jfy = { source = "modular_calc_jfy/__main__.py", type = "onefile", windowed = true }
