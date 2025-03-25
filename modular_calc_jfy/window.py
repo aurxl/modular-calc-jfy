@@ -6,6 +6,7 @@ from importlib import metadata
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore, QtGui
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
+from modular_calc_jfy.backup import Backup
 
 UI_FILE = f"{Path(__file__).parent.resolve()}/window.ui"
 AUX_UI_FILE = f"{Path(__file__).parent.resolve()}/aux_calc.ui"
@@ -55,6 +56,11 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.button_open_auxcalc.clicked.connect(self.open_aux_calc)
 
+        # Handling import/export of results table
+        self.backuphandler = Backup(self)
+        self.button_export.clicked.connect(self.backuphandler.export_data)
+        self.button_import.clicked.connect(self.backuphandler.import_data)
+
         # Handling menubar objects
         self.action_team.triggered.connect(self.about_team)
         self.action_software.triggered.connect(self.about_software)
@@ -91,7 +97,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.calc_input = result
             self.input_field.setText(self.calc_input)
         except (InvalidExpressionError, Exception) as e:
-            self.result_display.setText("Error")
+            self.result_display.setText(f"Error: {e}")
     
     def clear_input(self):
         self.calc_input = ""
@@ -154,7 +160,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def add_to_results_table(self, input_value, result, module_name):
         """Add a calculation result to the results table."""
         current_date = QtCore.QDate.currentDate().toString("dd.MM.yyyy")
-        
+
         row_position = 0
         self.results_table.insertRow(row_position)
         

@@ -78,7 +78,7 @@
     <property name="title">
      <string>Weitere Funktionen</string>
     </property>
-    <widget class="QPushButton" name="button_save">
+    <widget class="QPushButton" name="button_export">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -88,10 +88,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Speichern</string>
+      <string>Exportieren</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="button_load">
+    <widget class="QPushButton" name="button_import">
      <property name="geometry">
       <rect>
        <x>180</x>
@@ -101,7 +101,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Auslesen</string>
+      <string>Importieren</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_load_2">
