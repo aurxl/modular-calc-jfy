@@ -16,7 +16,9 @@ def determine_MEIPASS(path:str):
 
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
-PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_ui.ui"
+PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
+CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
+GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
 
 
 
@@ -25,9 +27,24 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(None)
         uic.loadUi(UI_FILE, self)
 
-        self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "centralwidget")
+        # First try to find a stacked widget named "stackedWidget" in the UI file
+        self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "stackedWidget")
+        
+        # If not found, create one and set it as the central widget
         if not self.stacked_widget:
-            print("Error: stackedWidget not found!")
+            print("Creating stacked widget programmatically...")
+            # Store the original central widget
+            original_central = self.centralWidget()
+            
+            # Create a new stacked widget
+            self.stacked_widget = QtWidgets.QStackedWidget()
+            
+            # If there was an original central widget, add it as the first page
+            if original_central:
+                self.stacked_widget.addWidget(original_central)
+            
+            # Set the stacked widget as the central widget
+            self.setCentralWidget(self.stacked_widget)
 
         self.calculator = Calculator()
         self.calc_input = ""
@@ -41,8 +58,6 @@ class MainWindow(QtWidgets.QMainWindow):
             self.results_table.setColumnCount(4)
             header_item = QtWidgets.QTableWidgetItem("Modul")
             self.results_table.setHorizontalHeaderItem(3, header_item)
-
-        self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "stackedWidget")
 
         self.input_field.textChanged.connect(self.update_input)
 
@@ -137,24 +152,37 @@ class MainWindow(QtWidgets.QMainWindow):
         clipboard.setText(self.aux_calc_display.text())
 
     def show_main_view(self):
+        # Switch back to the main calculator view (index 0)
         self.stacked_widget.setCurrentIndex(0)
         self.setWindowTitle("Rechnerprojekt - Startmodul")
 
     def show_percentage_module(self):
+        # Create the percentage module widget
         self.percentage_ui = QtWidgets.QWidget()
         uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
 
+        # Connect the back button
         btn_back_percentage = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_back_percentage")
         if btn_back_percentage:
             btn_back_percentage.clicked.connect(self.show_main_view)
 
-        old_widget = self.stacked_widget.widget(1)
-        self.stacked_widget.removeWidget(old_widget)
-        old_widget.deleteLater()
-
-        self.stacked_widget.insertWidget(1, self.percentage_ui)
-        self.stacked_widget.setCurrentIndex(1)
-
+        # Check if we already have a percentage widget in the stacked widget
+        percentage_widget_index = -1
+        for i in range(self.stacked_widget.count()):
+            if self.stacked_widget.widget(i) == self.percentage_ui:
+                percentage_widget_index = i
+                break
+        
+        # If we already have a percentage widget, remove it
+        if percentage_widget_index != -1:
+            old_widget = self.stacked_widget.widget(percentage_widget_index)
+            self.stacked_widget.removeWidget(old_widget)
+            old_widget.deleteLater()
+        
+        # Add the new percentage widget
+        self.stacked_widget.addWidget(self.percentage_ui)
+        self.stacked_widget.setCurrentWidget(self.percentage_ui)
+        
         self.setWindowTitle("Rechnerprojekt - Prozentrechner")
 
     def show_credit_module(self):
