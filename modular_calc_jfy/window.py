@@ -19,16 +19,13 @@ def determine_MEIPASS(path:str):
 
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
-<<<<<<< HEAD
 
 DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
 LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
 CONSOLE_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/console.qss"
-=======
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
 GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
->>>>>>> a37072b2554e9ebac188715cecb35c9a166d4d03
 
 VERSION = "0.1.0" # metadata.version(__package__)
 COPYRIGHT = """
