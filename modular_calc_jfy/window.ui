@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1041</width>
+    <width>1060</width>
     <height>891</height>
    </rect>
   </property>
@@ -101,7 +101,139 @@
       </layout>
      </widget>
     </item>
-    <item row="2" column="0">
+    <item row="0" column="0" rowspan="2">
+     <widget class="QGroupBox" name="module_selection_2">
+      <property name="minimumSize">
+       <size>
+        <width>460</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Grundrechner</string>
+      </property>
+      <widget class="QLineEdit" name="calc_input">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>391</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>441</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <widget class="QLabel" name="calc_display">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>411</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="calc_display_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="clip_btn">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>30</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>📋</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1" rowspan="4">
+     <widget class="QTableWidget" name="table_calculations">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>4</number>
+      </property>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Datum</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eingabewerte</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ergebnis</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Modul</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="2" column="0" rowspan="2">
      <widget class="QGroupBox" name="module_selection">
       <property name="minimumSize">
        <size>
@@ -384,138 +516,6 @@
       </widget>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QTableWidget" name="table_calculations">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>4</number>
-      </property>
-      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>true</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>Datum</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Eingabewerte</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Ergebnis</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Modul</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="module_selection_2">
-      <property name="minimumSize">
-       <size>
-        <width>460</width>
-        <height>400</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Grundrechner</string>
-      </property>
-      <widget class="QLineEdit" name="calc_input">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>391</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QFrame" name="frame">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>70</y>
-         <width>441</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
-       </property>
-       <widget class="QLabel" name="calc_display">
-        <property name="geometry">
-         <rect>
-          <x>20</x>
-          <y>0</y>
-          <width>411</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="calc_display_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>0</y>
-          <width>16</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>=</string>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QPushButton" name="clip_btn">
-       <property name="geometry">
-        <rect>
-         <x>410</x>
-         <y>30</y>
-         <width>41</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>📋</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -523,7 +523,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1041</width>
+     <width>1060</width>
      <height>23</height>
     </rect>
    </property>
