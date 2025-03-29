@@ -21,7 +21,6 @@ build-backend = "poetry.core.masonry.api"
 jfy = "modular_calc_jfy.__main__:main"
 
 [tool.poetry-pyinstaller-plugin]
-"collect" = "all"
 "icon" = "calc.png"
 
 [tool.poetry-pyinstaller-plugin.include]

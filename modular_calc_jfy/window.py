@@ -1,8 +1,6 @@
 import sys
 
-from modular_calc_jfy.__main__ import __doc__ as COPYRIGHT
-
-from importlib import metadata
+# from importlib import metadata
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore, QtGui
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
@@ -21,13 +19,27 @@ def determine_MEIPASS(path:str):
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
 
-AUX_UI_FILE = f"{Path(__file__).parent.resolve()}/aux_calc.ui"
+DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
+LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
+CONSOLE_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/console.qss"
 
-DARK_STYLE = f"{Path(__file__).parent.resolve().parent.resolve()}/styles/dark_grey.qss"
-LIGHT_STYLE = f"{Path(__file__).parent.resolve().parent.resolve()}/styles/light.qss"
-CONSOLE_STYLE = f"{Path(__file__).parent.resolve().parent.resolve()}/styles/console.qss"
+VERSION = "0.1.0" # metadata.version(__package__)
+COPYRIGHT = """
+Copyright (C) 2024 
+- Sarah Zimmermann
+- Kenny Schilde
+- Tommy Pahlitzsch
+- Jan Meineke <jan.meineke@tracetronic.de>
 
-VERSION = metadata.version(__package__)
+All rights reserved.
+
+The modification and distribution of this software is
+hereby not permitted, unless otherwise communicated by the
+offial publisher.
+
+The use of this software is only permitted when distributed
+by the official publisher or one of it's offical distributors.
+"""
 
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
