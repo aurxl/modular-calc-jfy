@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,6 +17,9 @@
    <string>Rechnerprojekt - Startmodul</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <widget class="QGroupBox" name="module_selection">
     <property name="geometry">
      <rect>
@@ -78,7 +84,7 @@
     <property name="title">
      <string>Weitere Funktionen</string>
     </property>
-    <widget class="QPushButton" name="button_save">
+    <widget class="QPushButton" name="button_export">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -88,27 +94,14 @@
       </rect>
      </property>
      <property name="text">
-      <string>Speichern</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="button_load">
-     <property name="geometry">
-      <rect>
-       <x>180</x>
-       <y>30</y>
-       <width>150</width>
-       <height>40</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Auslesen</string>
+      <string>Exportieren</string>
      </property>
     </widget>
     <widget class="QPushButton" name="button_load_2">
      <property name="geometry">
       <rect>
        <x>810</x>
-       <y>20</y>
+       <y>30</y>
        <width>150</width>
        <height>40</height>
       </rect>
@@ -120,7 +113,7 @@
     <widget class="QPushButton" name="button_open_auxcalc">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>170</x>
        <y>30</y>
        <width>150</width>
        <height>40</height>
@@ -431,9 +424,9 @@
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>20</y>
+      <y>0</y>
       <width>500</width>
-      <height>631</height>
+      <height>651</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -510,7 +503,6 @@
    <addaction name="menuEinstellungen"/>
    <addaction name="menuAbout"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
