@@ -1,6 +1,7 @@
 import sys
 
 # from importlib import metadata
+from enum import Enum
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore, QtGui
 
@@ -27,7 +28,21 @@ PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/perce
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
 GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
 
-VERSION = "0.1.0" # metadata.version(__package__)
+VERSION = "0.1.0" # "0.5.0"
+
+
+class Modules(Enum):
+    CALCULATOR = "calculator"
+    INFO = "info"
+    PERCENTAGE = "percentage"
+    SCHOOL = "school"
+    GEOMETRY = "geometry"
+    MATH = "math"
+    CREDIT = "credit"
+
+enabled_modules = ["geometry", "percentage", "credit"]
+
+
 COPYRIGHT = """
 Copyright (C) 2024 
 - Sarah Zimmermann
@@ -94,9 +109,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.calc_btn_save.clicked.connect(self.save_result)
 
         self.button_open_auxcalc.clicked.connect(self.open_aux_calc)
-        self.button_percentage_module.clicked.connect(self.show_percentage_module)
-        self.button_credit_module.clicked.connect(self.show_credit_module)
-        self.button_geometry_module.clicked.connect(self.show_geometry_module)
+        self.clip_btn.clicked.connect(self.add_clipboard_input)
 
         # Handling import/export of results table
         self.backuphandler = Backup(self)
@@ -122,6 +135,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.action_14.triggered.connect(self.font_14)
         self.action_16.triggered.connect(self.font_16)
 
+        # Fill in combo box with enables modules
+        self.combo_box_modules.addItems(["calculator"] + enabled_modules)
+        self.combo_box_modules.currentTextChanged.connect(self.show_module)
+        self.show_module(value="calculator")
+
     def update_input(self):
         self.calc_input = self.input_field.text()
 
@@ -131,12 +149,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calculate(self):
         try:
-            result = str(self.calculator.calc(self.calc_input))
+            result = str(round(self.calculator.calc(self.calc_input), 6))
             self.result_display.setText(result)
 
             self.add_to_results_table(self.calc_input, result, "Grundrechner")
-
-            self.calc_input = result
+            
+            self.calc_input = None
             self.input_field.setText(self.calc_input)
         except (InvalidExpressionError, Exception) as e:
             self.result_display.setText(f"Error: {e}")
@@ -149,6 +167,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def save_result(self):
         clipboard = QtWidgets.QApplication.clipboard()
         clipboard.setText(self.result_display.text())
+    
+    def add_clipboard_input(self):
+        clipboard = QtWidgets.QApplication.clipboard()
+        self.add_to_input(clipboard.text())
 
     def open_aux_calc(self):
         aux_dialog = QtWidgets.QDialog(self)
@@ -180,7 +202,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def aux_calculate(self):
         try:
-            result = str(self.calculator.calc(self.aux_calc_input.text()))
+            result = str(round(self.calculator.calc(self.aux_calc_input.text()), 6))
             self.aux_calc_display.setText(result)
             self.add_to_results_table(self.aux_calc_input.text(), result, "Hilfsrechner")
             self.aux_calc_input.setText(result)
@@ -281,6 +303,26 @@ class MainWindow(QtWidgets.QMainWindow):
         self.results_table.setItem(row_position, 1, QtWidgets.QTableWidgetItem(input_value))
         self.results_table.setItem(row_position, 2, QtWidgets.QTableWidgetItem(result))
         self.results_table.setItem(row_position, 3, QtWidgets.QTableWidgetItem(module_name))
+
+    def show_module(self, value:str):
+        if not value in Modules:
+            QtWidgets.QMessageBox.information(self, f"Error loading Module {value}")
+            return    
+
+        if value == Modules.GEOMETRY.value:
+            self.show_geometry_module()
+        elif value == Modules.INFO.value:
+            pass
+        elif value == Modules.PERCENTAGE.value:
+            self.show_percentage_module()
+        elif value == Modules.CREDIT.value:
+            self.show_credit_module()
+        elif value == Modules.SCHOOL.value:
+            pass
+        elif value == Modules.MATH.value:
+            pass
+        else:
+            self.show_main_view()
 
     def about_team(self):
         QtWidgets.QMessageBox.information(self, "Über das Team", "Sarah Zimmermann\nKenny Schilde\nTommy Pahlitzsch\nJan Meineke")
