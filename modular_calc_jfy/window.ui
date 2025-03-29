@@ -15,409 +15,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QGroupBox" name="module_selection_2">
-      <property name="minimumSize">
-       <size>
-        <width>460</width>
-        <height>400</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Grundrechner</string>
-      </property>
-      <widget class="QPushButton" name="calc_btn_c">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>330</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>C</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_0">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>330</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_dot">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>330</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>.</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_eq">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>330</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>=</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_save">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>330</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Speichern</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_2">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>280</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_sub">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>280</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>-</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_3">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>280</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_1">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>280</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_add">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>280</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>+</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_5">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>230</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>5</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_div">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>230</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>/</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_6">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>230</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>6</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_4">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>230</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_mul">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>230</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>x</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_8">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>180</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>8</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_bracketR">
-       <property name="geometry">
-        <rect>
-         <x>370</x>
-         <y>180</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>)</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_9">
-       <property name="geometry">
-        <rect>
-         <x>190</x>
-         <y>180</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>9</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_7">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>7</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="calc_btn_bracketL">
-       <property name="geometry">
-        <rect>
-         <x>280</x>
-         <y>180</y>
-         <width>81</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>(</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="calc_input">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>441</width>
-         <height>31</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="calc_display">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>50</y>
-         <width>431</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>TextLabel</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="0" column="1" rowspan="2">
-     <widget class="QTableWidget" name="table_calculations">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="rowCount">
-       <number>0</number>
-      </property>
-      <property name="columnCount">
-       <number>4</number>
-      </property>
-      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>true</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>Datum</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Eingabewerte</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Ergebnis</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Modul</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QGroupBox" name="module_selection">
-      <property name="minimumSize">
-       <size>
-        <width>460</width>
-        <height>300</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Funktionsmodule</string>
-      </property>
-      <widget class="QPushButton" name="button_percentage_module">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>80</y>
-         <width>200</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Prozentrechnung</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_credit_module">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>130</y>
-         <width>200</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Kreditberechnung</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_geometry_module">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>200</width>
-         <height>40</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Geometrie</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
+    <item row="4" column="0" colspan="2">
      <widget class="QGroupBox" name="bottom_buttons">
       <property name="minimumSize">
        <size>
@@ -501,6 +99,421 @@
         </widget>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QGroupBox" name="module_selection">
+      <property name="minimumSize">
+       <size>
+        <width>460</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Eingabe</string>
+      </property>
+      <widget class="QComboBox" name="combo_box_modules">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>441</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_sub">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>190</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>-</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_add">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>190</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>+</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_1">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_2">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>190</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_3">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>190</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_6">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>140</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>6</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_eq">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>240</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>=</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_c">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>C</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_4">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_8">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>90</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>8</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_bracketR">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>90</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>)</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_0">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>240</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_mul">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>140</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>x</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_div">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>140</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>/</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_5">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>140</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>5</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_7">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>7</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_bracketL">
+       <property name="geometry">
+        <rect>
+         <x>280</x>
+         <y>90</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>(</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_save">
+       <property name="geometry">
+        <rect>
+         <x>370</x>
+         <y>240</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Speichern</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_9">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>90</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>9</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="calc_btn_dot">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>240</y>
+         <width>81</width>
+         <height>40</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>.</string>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTableWidget" name="table_calculations">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="mouseTracking">
+       <bool>false</bool>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="rowCount">
+       <number>0</number>
+      </property>
+      <property name="columnCount">
+       <number>4</number>
+      </property>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Datum</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eingabewerte</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ergebnis</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Modul</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QGroupBox" name="module_selection_2">
+      <property name="minimumSize">
+       <size>
+        <width>460</width>
+        <height>400</height>
+       </size>
+      </property>
+      <property name="title">
+       <string>Grundrechner</string>
+      </property>
+      <widget class="QLineEdit" name="calc_input">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>391</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QFrame" name="frame">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>441</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <widget class="QLabel" name="calc_display">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>0</y>
+          <width>411</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="calc_display_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>0</y>
+          <width>16</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>=</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QPushButton" name="clip_btn">
+       <property name="geometry">
+        <rect>
+         <x>410</x>
+         <y>30</y>
+         <width>41</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>📋</string>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
