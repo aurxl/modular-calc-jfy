@@ -5,6 +5,7 @@ from modular_calc_jfy.__main__ import __doc__ as COPYRIGHT
 from importlib import metadata
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore, QtGui
+
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
 from modular_calc_jfy.backup import Backup
 
@@ -20,8 +21,7 @@ def determine_MEIPASS(path:str):
 
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
-
-AUX_UI_FILE = f"{Path(__file__).parent.resolve()}/aux_calc.ui"
+PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_ui.ui"
 
 DARK_STYLE = f"{Path(__file__).parent.resolve().parent.resolve()}/styles/dark_grey.qss"
 LIGHT_STYLE = f"{Path(__file__).parent.resolve().parent.resolve()}/styles/light.qss"
@@ -33,28 +33,33 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__(None)
         uic.loadUi(UI_FILE, self)
-        
         self.app = QtWidgets.QApplication.instance()
         self.theme = "System"
 
+        self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "centralwidget")
+        if not self.stacked_widget:
+            print("Error: stackedWidget not found!")
+
         self.calculator = Calculator()
         self.calc_input = ""
+        
         self.input_field = self.findChild(QtWidgets.QLineEdit, "calc_input")
         self.result_display = self.findChild(QtWidgets.QLabel, "calc_display")
         self.result_display.setText("")
-        
+
         self.results_table = self.findChild(QtWidgets.QTableWidget, "table_calculations")
         if self.results_table.columnCount() < 4:
             self.results_table.setColumnCount(4)
             header_item = QtWidgets.QTableWidgetItem("Modul")
             self.results_table.setHorizontalHeaderItem(3, header_item)
-        
+
+        self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "stackedWidget")
+
         self.input_field.textChanged.connect(self.update_input)
-        
-        # Number-Buttons verknüpft
+
         for i in range(10):
             getattr(self, f"calc_btn_{i}").clicked.connect(lambda _, x=i: self.add_to_input(str(x)))
-        
+
         self.calc_btn_add.clicked.connect(lambda: self.add_to_input("+"))
         self.calc_btn_sub.clicked.connect(lambda: self.add_to_input("-"))
         self.calc_btn_mul.clicked.connect(lambda: self.add_to_input("*"))
@@ -65,8 +70,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.calc_btn_eq.clicked.connect(self.calculate)
         self.calc_btn_c.clicked.connect(self.clear_input)
         self.calc_btn_save.clicked.connect(self.save_result)
-        
+
         self.button_open_auxcalc.clicked.connect(self.open_aux_calc)
+        self.button_percentage_module.clicked.connect(self.show_percentage_module)
 
         # Handling import/export of results table
         self.backuphandler = Backup(self)
@@ -94,18 +100,18 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def update_input(self):
         self.calc_input = self.input_field.text()
-    
+
     def add_to_input(self, value):
         self.calc_input += value
         self.input_field.setText(self.calc_input)
-    
+
     def calculate(self):
         try:
             result = str(self.calculator.calc(self.calc_input))
             self.result_display.setText(result)
-            
+
             self.add_to_results_table(self.calc_input, result, "Grundrechner")
-            
+
             self.calc_input = result
             self.input_field.setText(self.calc_input)
         except (InvalidExpressionError, Exception) as e:
@@ -115,78 +121,95 @@ class MainWindow(QtWidgets.QMainWindow):
         self.calc_input = ""
         self.input_field.setText("")
         self.result_display.setText("")
-    
+
     def save_result(self):
         clipboard = QtWidgets.QApplication.clipboard()
         clipboard.setText(self.result_display.text())
-        
+
     def open_aux_calc(self):
         aux_dialog = QtWidgets.QDialog(self)
         uic.loadUi(AUX_UI_FILE, aux_dialog)
-        
+
         self.aux_calc_input = aux_dialog.findChild(QtWidgets.QLineEdit, "aux_calc_input")
         self.aux_calc_display = aux_dialog.findChild(QtWidgets.QLabel, "aux_calc_display")
         self.aux_calc_display.setText("")
 
         for i in range(10):
             getattr(aux_dialog, f"aux_calc_btn_{i}").clicked.connect(lambda _, x=i: self.aux_add_to_input(str(x)))
-        
 
-        aux_dialog.aux_calc_btn_add.clicked.connect(lambda: self.aux_add_to_input("+"))
-        aux_dialog.aux_calc_btn_sub.clicked.connect(lambda: self.aux_add_to_input("-"))
-        aux_dialog.aux_calc_btn_mul.clicked.connect(lambda: self.aux_add_to_input("*"))
-        aux_dialog.aux_calc_btn_div.clicked.connect(lambda: self.aux_add_to_input("/"))
-        aux_dialog.aux_calc_btn_bracketL.clicked.connect(lambda: self.aux_add_to_input("("))
-        aux_dialog.aux_calc_btn_bracketR.clicked.connect(lambda: self.aux_add_to_input(")"))
-        aux_dialog.aux_calc_btn_dot.clicked.connect(lambda: self.aux_add_to_input("."))
-        aux_dialog.aux_calc_btn_eq.clicked.connect(self.aux_calculate)
-        aux_dialog.aux_calc_btn_c.clicked.connect(self.aux_clear_input)
-        aux_dialog.aux_calc_btn_save.clicked.connect(self.aux_save_result)
-        
-        aux_dialog.aux_btn_close.clicked.connect(aux_dialog.close)
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_add").clicked.connect(lambda: self.aux_add_to_input("+"))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_sub").clicked.connect(lambda: self.aux_add_to_input("-"))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_mul").clicked.connect(lambda: self.aux_add_to_input("*"))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_div").clicked.connect(lambda: self.aux_add_to_input("/"))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_bracketL").clicked.connect(lambda: self.aux_add_to_input("("))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_bracketR").clicked.connect(lambda: self.aux_add_to_input(")"))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_dot").clicked.connect(lambda: self.aux_add_to_input("."))
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_eq").clicked.connect(self.aux_calculate)
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_c").clicked.connect(self.aux_clear_input)
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_calc_btn_save").clicked.connect(self.aux_save_result)
+
+        aux_dialog.findChild(QtWidgets.QPushButton, "aux_btn_close").clicked.connect(aux_dialog.close)
         aux_dialog.exec()
-
 
     def aux_add_to_input(self, value):
         self.aux_calc_input.setText(self.aux_calc_input.text() + value)
-    
+
     def aux_calculate(self):
         try:
             result = str(self.calculator.calc(self.aux_calc_input.text()))
             self.aux_calc_display.setText(result)
-            
             self.add_to_results_table(self.aux_calc_input.text(), result, "Hilfsrechner")
-            
             self.aux_calc_input.setText(result)
-        except (InvalidExpressionError, Exception) as e:
+        except (InvalidExpressionError, Exception):
             self.aux_calc_display.setText("Error")
-    
+
     def aux_clear_input(self):
         self.aux_calc_input.setText("")
         self.aux_calc_display.setText("")
-    
+
     def aux_save_result(self):
         clipboard = QtWidgets.QApplication.clipboard()
         clipboard.setText(self.aux_calc_display.text())
-    
+
+    def show_main_view(self):
+        self.stacked_widget.setCurrentIndex(0)
+        self.setWindowTitle("Rechnerprojekt - Startmodul")
+
+    def show_percentage_module(self):
+        self.percentage_ui = QtWidgets.QWidget()
+        uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
+
+        btn_back_percentage = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_back_percentage")
+        if btn_back_percentage:
+            btn_back_percentage.clicked.connect(self.show_main_view)
+
+        old_widget = self.stacked_widget.widget(1)
+        self.stacked_widget.removeWidget(old_widget)
+        old_widget.deleteLater()
+
+        self.stacked_widget.insertWidget(1, self.percentage_ui)
+        self.stacked_widget.setCurrentIndex(1)
+
+        self.setWindowTitle("Rechnerprojekt - Prozentrechner")
+
+    def show_credit_module(self):
+        self.stacked_widget.setCurrentIndex(2)
+        self.setWindowTitle("Rechnerprojekt - Kreditberechnung")
+
+    def show_geometry_module(self):
+        self.stacked_widget.setCurrentIndex(3)
+        self.setWindowTitle("Rechnerprojekt - Geometrie")
+
     def add_to_results_table(self, input_value, result, module_name):
-        """Add a calculation result to the results table."""
         current_date = QtCore.QDate.currentDate().toString("dd.MM.yyyy")
 
         row_position = 0
         self.results_table.insertRow(row_position)
-        
-        date_item = QtWidgets.QTableWidgetItem(current_date)
-        self.results_table.setItem(row_position, 0, date_item)
-        
-        input_item = QtWidgets.QTableWidgetItem(input_value)
-        self.results_table.setItem(row_position, 1, input_item)
-        
-        result_item = QtWidgets.QTableWidgetItem(result)
-        self.results_table.setItem(row_position, 2, result_item)
-        
-        module_item = QtWidgets.QTableWidgetItem(module_name)
-        self.results_table.setItem(row_position, 3, module_item)
+
+        self.results_table.setItem(row_position, 0, QtWidgets.QTableWidgetItem(current_date))
+        self.results_table.setItem(row_position, 1, QtWidgets.QTableWidgetItem(input_value))
+        self.results_table.setItem(row_position, 2, QtWidgets.QTableWidgetItem(result))
+        self.results_table.setItem(row_position, 3, QtWidgets.QTableWidgetItem(module_name))
 
     def about_team(self):
         QtWidgets.QMessageBox.information(self, "Über das Team", "Sarah Zimmermann\nKenny Schilde\nTommy Pahlitzsch\nJan Meineke")
