@@ -27,23 +27,16 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__(None)
         uic.loadUi(UI_FILE, self)
 
-        # First try to find a stacked widget named "stackedWidget" in the UI file
         self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "stackedWidget")
         
-        # If not found, create one and set it as the central widget
         if not self.stacked_widget:
-            print("Creating stacked widget programmatically...")
-            # Store the original central widget
             original_central = self.centralWidget()
             
-            # Create a new stacked widget
             self.stacked_widget = QtWidgets.QStackedWidget()
             
-            # If there was an original central widget, add it as the first page
             if original_central:
                 self.stacked_widget.addWidget(original_central)
             
-            # Set the stacked widget as the central widget
             self.setCentralWidget(self.stacked_widget)
 
         self.calculator = Calculator()
@@ -77,6 +70,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.button_open_auxcalc.clicked.connect(self.open_aux_calc)
         self.button_percentage_module.clicked.connect(self.show_percentage_module)
+        self.button_credit_module.clicked.connect(self.show_credit_module)
+        self.button_geometry_module.clicked.connect(self.show_geometry_module)
 
     def update_input(self):
         self.calc_input = self.input_field.text()
@@ -152,45 +147,79 @@ class MainWindow(QtWidgets.QMainWindow):
         clipboard.setText(self.aux_calc_display.text())
 
     def show_main_view(self):
-        # Switch back to the main calculator view (index 0)
         self.stacked_widget.setCurrentIndex(0)
         self.setWindowTitle("Rechnerprojekt - Startmodul")
 
     def show_percentage_module(self):
-        # Create the percentage module widget
         self.percentage_ui = QtWidgets.QWidget()
         uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
 
-        # Connect the back button
         btn_back_percentage = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_back_percentage")
         if btn_back_percentage:
             btn_back_percentage.clicked.connect(self.show_main_view)
 
-        # Check if we already have a percentage widget in the stacked widget
         percentage_widget_index = -1
         for i in range(self.stacked_widget.count()):
             if self.stacked_widget.widget(i) == self.percentage_ui:
                 percentage_widget_index = i
                 break
         
-        # If we already have a percentage widget, remove it
         if percentage_widget_index != -1:
             old_widget = self.stacked_widget.widget(percentage_widget_index)
             self.stacked_widget.removeWidget(old_widget)
             old_widget.deleteLater()
         
-        # Add the new percentage widget
         self.stacked_widget.addWidget(self.percentage_ui)
         self.stacked_widget.setCurrentWidget(self.percentage_ui)
         
         self.setWindowTitle("Rechnerprojekt - Prozentrechner")
 
     def show_credit_module(self):
-        self.stacked_widget.setCurrentIndex(2)
+        self.credit_ui = QtWidgets.QWidget()
+        uic.loadUi(CREDIT_UI_FILE, self.credit_ui)
+
+        btn_back_credit = self.credit_ui.findChild(QtWidgets.QPushButton, "btn_back_credit")
+        if btn_back_credit:
+            btn_back_credit.clicked.connect(self.show_main_view)
+
+        credit_widget_index = -1
+        for i in range(self.stacked_widget.count()):
+            if self.stacked_widget.widget(i) == self.credit_ui:
+                credit_widget_index = i
+                break
+        
+        if credit_widget_index != -1:
+            old_widget = self.stacked_widget.widget(credit_widget_index)
+            self.stacked_widget.removeWidget(old_widget)
+            old_widget.deleteLater()
+        
+        self.stacked_widget.addWidget(self.credit_ui)
+        self.stacked_widget.setCurrentWidget(self.credit_ui)
+        
         self.setWindowTitle("Rechnerprojekt - Kreditberechnung")
 
     def show_geometry_module(self):
-        self.stacked_widget.setCurrentIndex(3)
+        self.geometry_ui = QtWidgets.QWidget()
+        uic.loadUi(GEOMETRY_UI_FILE, self.geometry_ui)
+
+        btn_back_geometry = self.geometry_ui.findChild(QtWidgets.QPushButton, "btn_back_geometry")
+        if btn_back_geometry:
+            btn_back_geometry.clicked.connect(self.show_main_view)
+
+        geometry_widget_index = -1
+        for i in range(self.stacked_widget.count()):
+            if self.stacked_widget.widget(i) == self.geometry_ui:
+                geometry_widget_index = i
+                break
+        
+        if geometry_widget_index != -1:
+            old_widget = self.stacked_widget.widget(geometry_widget_index)
+            self.stacked_widget.removeWidget(old_widget)
+            old_widget.deleteLater()
+        
+        self.stacked_widget.addWidget(self.geometry_ui)
+        self.stacked_widget.setCurrentWidget(self.geometry_ui)
+        
         self.setWindowTitle("Rechnerprojekt - Geometrie")
 
     def add_to_results_table(self, input_value, result, module_name):
