@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>776</height>
+    <width>1084</width>
+    <height>822</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="2" rowspan="4">
+    <item row="0" column="3" rowspan="4">
      <widget class="QTableWidget" name="table_calculations">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -86,6 +86,22 @@
      </widget>
     </item>
     <item row="3" column="0">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>4</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="1">
      <widget class="QGroupBox" name="module_selection">
       <property name="minimumSize">
        <size>
@@ -374,7 +390,7 @@
       </widget>
      </widget>
     </item>
-    <item row="4" column="0" colspan="3">
+    <item row="4" column="1" colspan="3">
      <widget class="QGroupBox" name="bottom_buttons">
       <property name="minimumSize">
        <size>
@@ -460,7 +476,7 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="0">
+    <item row="0" column="1">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="enabled">
        <bool>true</bool>
@@ -509,7 +525,7 @@
           <rect>
            <x>10</x>
            <y>70</y>
-           <width>421</width>
+           <width>441</width>
            <height>31</height>
           </rect>
          </property>
@@ -524,7 +540,7 @@
            <rect>
             <x>20</x>
             <y>0</y>
-            <width>391</width>
+            <width>411</width>
             <height>31</height>
            </rect>
           </property>
@@ -551,7 +567,7 @@
           <rect>
            <x>10</x>
            <y>30</y>
-           <width>371</width>
+           <width>391</width>
            <height>31</height>
           </rect>
          </property>
@@ -559,7 +575,7 @@
         <widget class="QPushButton" name="clip_btn">
          <property name="geometry">
           <rect>
-           <x>390</x>
+           <x>410</x>
            <y>30</y>
            <width>41</width>
            <height>31</height>
@@ -594,6 +610,22 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="4">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>4</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -601,7 +633,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1084</width>
      <height>23</height>
     </rect>
    </property>
