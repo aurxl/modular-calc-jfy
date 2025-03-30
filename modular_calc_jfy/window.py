@@ -229,6 +229,21 @@ class MainWindow(QtWidgets.QMainWindow):
         if btn_back_percentage:
             btn_back_percentage.clicked.connect(self.show_main_view)
 
+        # Finde UI-Elemente
+        self.combo_function = self.percentage_ui.findChild(QtWidgets.QComboBox, "combo_function")
+        self.stacked_inputs = self.percentage_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs")
+        self.btn_calculate = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_calculate")
+        self.result_value = self.percentage_ui.findChild(QtWidgets.QLabel, "result_value")
+
+        # Verbinde ComboBox mit Funktion zum Ändern der angezeigten Eingabefelder
+        self.combo_function.currentIndexChanged.connect(self.on_percentage_function_changed)
+        
+        # Verbinde Berechnen-Button mit Funktion
+        self.btn_calculate.clicked.connect(self.calculate_percentage)
+
+        # Initialisiere die Anzeige
+        self.on_percentage_function_changed(0)
+
         percentage_widget_index = -1
         for i in range(self.stacked_widget.count()):
             if self.stacked_widget.widget(i) == self.percentage_ui:
@@ -244,6 +259,73 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stacked_widget.setCurrentWidget(self.percentage_ui)
         
         self.setWindowTitle("Rechnerprojekt - Prozentrechner")
+
+    def on_percentage_function_changed(self, index):
+        """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
+        self.stacked_inputs.setCurrentIndex(index)
+        self.result_value.setText("0.00")
+
+    def calculate_percentage(self):
+        """Berechnet das Ergebnis basierend auf der ausgewählten Funktion und den Eingabewerten."""
+        from modular_calc_jfy.modules.percentage import Percentage
+        
+        function_index = self.combo_function.currentIndex()
+        result = 0.0
+        input_text = ""
+        
+        try:
+            # Prozent dazu
+            if function_index == 0:
+                value = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_add_value").text())
+                percent = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_add_percent").text()) / 100
+                result = Percentage.add_percentage(value, percent)
+                input_text = f"{value} + {percent*100}%"
+            
+            # Prozent weg
+            elif function_index == 1:
+                value = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_sub_value").text())
+                percent = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_sub_percent").text()) / 100
+                result = Percentage.sub_percentage(value, percent)
+                input_text = f"{value} - {percent*100}%"
+            
+            # Prozent davon
+            elif function_index == 2:
+                value = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_of_value").text())
+                percent = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_of_percent").text()) / 100
+                result = Percentage.percentage_of(value, percent)
+                input_text = f"{percent*100}% von {value}"
+            
+            # Prozent-Satz
+            elif function_index == 3:
+                base = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_percentage_base").text())
+                part = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_percentage_part").text())
+                result = Percentage.percentage(base, part) * 100  # Umrechnung in Prozent
+                input_text = f"{part} ist wieviel % von {base}"
+            
+            # Bruttopreis aus Nettopreis
+            elif function_index == 4:
+                net = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_gross_net").text())
+                tax = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_gross_tax").text())
+                result = Percentage.gross(net, tax)
+                input_text = f"Brutto aus {net} (MwSt: {tax}%)"
+            
+            # Nettopreis aus Bruttopreis
+            elif function_index == 5:
+                gross = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_net_gross").text())
+                tax = float(self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_net_tax").text())
+                result = Percentage.net(gross, tax)
+                input_text = f"Netto aus {gross} (MwSt: {tax}%)"
+            
+            # Ergebnis anzeigen und in Tabelle speichern
+            self.result_value.setText(f"{result:.2f}")
+            self.add_to_results_table(input_text, f"{result:.2f}", "Prozentrechner")
+            
+        except ValueError:
+            self.result_value.setText("Fehler: Ungültige Eingabe")
+        except ZeroDivisionError:
+            self.result_value.setText("Fehler: Division durch Null")
+        except Exception as e:
+            self.result_value.setText(f"Fehler: {str(e)}")
 
     def show_credit_module(self):
         self.credit_ui = QtWidgets.QWidget()

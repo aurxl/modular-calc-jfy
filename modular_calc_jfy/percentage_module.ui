@@ -6,38 +6,533 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>998</width>
-    <height>778</height>
+    <width>460</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>30</y>
-     <width>75</width>
-     <height>23</height>
+     <x>10</x>
+     <y>10</y>
+     <width>440</width>
+     <height>280</height>
     </rect>
    </property>
-   <property name="text">
-    <string>test</string>
+   <property name="minimumSize">
+    <size>
+     <width>460</width>
+     <height>0</height>
+    </size>
    </property>
-  </widget>
-  <widget class="QPushButton" name="btn_back_percentage">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
+   <property name="maximumSize">
+    <size>
+     <width>460</width>
+     <height>16777215</height>
+    </size>
    </property>
-   <property name="text">
-    <string>&lt;--</string>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
+   <property name="title">
+    <string>Prozentrechnung</string>
+   </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>30</y>
+      <width>121</width>
+      <height>10</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Funktion auswählen:</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="combo_function">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>27</y>
+      <width>301</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Prozent dazu</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Prozent weg</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Prozent davon</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Prozent-Satz</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Bruttopreis aus Nettopreis</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Nettopreis aus Bruttopreis</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QStackedWidget" name="stacked_inputs">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>441</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="page_add">
+     <widget class="QLabel" name="label_add_value">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ausgangswert:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_add_value">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_add_percent">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Prozentsatz (%):</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_add_percent">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_add">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Erhöht einen Wert um einen bestimmten Prozentsatz</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_sub">
+     <widget class="QLabel" name="label_sub">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Verringert einen Wert um einen bestimmten Prozentsatz</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_sub_value">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ausgangswert:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_sub_value">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_sub_percent">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Prozentsatz (%):</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_sub_percent">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_of">
+     <widget class="QLabel" name="label_of">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnet den Prozentsatz eines Wertes</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_of_value">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Ausgangswert:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_of_value">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_of_percent">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Prozentsatz (%):</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_of_percent">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_percentage">
+     <widget class="QLabel" name="label_percentage">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnet, wie viel Prozent ein Wert von einem anderen ist</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_percentage_base">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Basiswert:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_percentage_base">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_percentage_part">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Teilwert:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_percentage_part">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_gross">
+     <widget class="QLabel" name="label_gross">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnet den Bruttopreis aus dem Nettopreis</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_gross_net">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Nettopreis:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_gross_net">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_gross_tax">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MwSt-Satz (%):</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_gross_tax">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>19</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_net">
+     <widget class="QLabel" name="label_net">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>421</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Berechnet den Nettopreis aus dem Bruttopreis</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_net_gross">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Bruttopreis:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_net_gross">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>50</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_net_tax">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>MwSt-Satz (%):</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="input_net_tax">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>80</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>19</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="btn_calculate">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>180</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Berechnen</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_results">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Ergebnis</string>
+    </property>
+    <widget class="QLabel" name="label_result_title">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>121</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ergebnis:</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="result_value">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>20</y>
+       <width>291</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0.00</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
