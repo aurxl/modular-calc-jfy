@@ -8,7 +8,7 @@ from PyQt6 import QtWidgets, uic, QtCore, QtGui
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
 from modular_calc_jfy.backup import Backup
 from modular_calc_jfy.modules.school import SchoolGrades
-
+from modular_calc_jfy.modules.info import InformatikRechner, NumberType, DataType
 
 # Determine correct path for dev and prod
 # MEIPASS is the dir where the EXE is running
@@ -26,6 +26,7 @@ DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_
 LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
 CONSOLE_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/console.qss"
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
+INFO_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/info_module.ui"
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
 GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
 SCHOOL_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/school_module.ui"
@@ -43,7 +44,7 @@ class Modules(Enum):
     MATH = "math"
     CREDIT = "credit"
 
-enabled_modules = ["geometry", "percentage", "credit", "school"]
+enabled_modules = ["geometry", "percentage", "credit", "school", "info"]
 
 
 COPYRIGHT = """
@@ -257,10 +258,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stacked_inputs = self.percentage_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs")
         self.btn_calculate = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_calculate")
         self.result_value = self.percentage_ui.findChild(QtWidgets.QLabel, "result_value")
-
-        # Verbinde ComboBox mit Funktion zum Ändern der angezeigten Eingabefelder
-        self.combo_function.currentIndexChanged.connect(self.on_percentage_function_changed)
-        
+ 
         # Verbinde Berechnen-Button mit Funktion
         self.btn_calculate.clicked.connect(self.calculate_percentage)
 
@@ -390,6 +388,115 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.setWindowTitle("Rechnerprojekt - Geometrie")
 
+    def show_info_module(self):
+        self.info_ui = QtWidgets.QWidget()
+        uic.loadUi(INFO_UI_FILE, self.info_ui)
+
+        info_widget_index = -1
+        for i in range(self.stacked_widget.count()):
+            if self.stacked_widget.widget(i) == self.info_ui:
+                info_widget_index = i
+                break
+        
+        if info_widget_index != -1:
+            old_widget = self.stacked_widget.widget(info_widget_index)
+            self.stacked_widget.removeWidget(old_widget)
+            old_widget.deleteLater()
+        
+        # Finde UI-Elemente
+        self.combo_function_info = self.info_ui.findChild(QtWidgets.QComboBox, "combo_function_2")
+        self.stacked_inputs_info = self.info_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs_2")
+        
+        # Verbinde ComboBox mit Funktion zum Ändern der angezeigten Eingabefelder
+        self.combo_function_info.currentIndexChanged.connect(self.on_info_function_changed)
+        
+        # Verbinde Berechnen-Buttons mit Funktionen
+        self.btn_calculate_number_systems = self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_2")
+        self.btn_calculate_bit_byte = self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_3")
+        
+        if self.btn_calculate_number_systems:
+            self.btn_calculate_number_systems.clicked.connect(self.calculate_number_systems)
+        
+        if self.btn_calculate_bit_byte:
+            self.btn_calculate_bit_byte.clicked.connect(self.calculate_bit_byte)
+        
+        # Initialisiere die Anzeige
+        self.on_info_function_changed(0)
+        
+        self.stacked_widget.addWidget(self.info_ui)
+        self.stacked_widget.setCurrentWidget(self.info_ui)
+        
+        self.setWindowTitle("Rechnerprojekt - Informationstechnologie")
+
+    def on_info_function_changed(self, index):
+        """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
+        self.stacked_inputs_info.setCurrentIndex(index)
+        
+    def calculate_number_systems(self):
+        """Berechnet die Umwandlung zwischen verschiedenen Zahlensystemen."""
+        try:
+            value = self.info_ui.findChild(QtWidgets.QLineEdit, "input_sub_value_2").text()
+            
+            number_type = NumberType.DECIMAL
+            
+            decimal_value = int(value)
+            
+            binary = bin(decimal_value)[2:]  # Binär
+            ternary = InformatikRechner.to_base(decimal_value, 3)  # Ternär
+            octal = oct(decimal_value)[2:]  # Oktal
+            
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_2").setText(str(binary))
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_4").setText(str(ternary))
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_3").setText(str(octal))
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_5").setText(str(decimal_value))
+            
+            input_text = f"Umrechnung {value} (Basis 10)"
+            result_text = f"Bin: {binary}, Ter: {ternary}, Okt: {octal}, Dez: {decimal_value}"
+            self.add_to_results_table(input_text, result_text, "Informatik")
+            
+        except ValueError:
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_2").setText("Fehler")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_4").setText("Fehler")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_3").setText("Fehler")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_5").setText("Fehler")
+        except Exception as e:
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_2").setText(f"Fehler: {str(e)}")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_4").setText("Fehler")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_3").setText("Fehler")
+            self.info_ui.findChild(QtWidgets.QLabel, "result_value_5").setText("Fehler")
+    
+    def calculate_bit_byte(self):
+        """Berechnet die Umwandlung zwischen Bit und Byte."""
+        try:
+            bit_input = self.info_ui.findChild(QtWidgets.QLineEdit, "input_add_value_2").text()
+            byte_input = self.info_ui.findChild(QtWidgets.QLineEdit, "input_add_percent_2").text()
+            
+            result = {}
+            input_text = ""
+            
+            if bit_input and not byte_input:
+                result = InformatikRechner.convert_data(float(bit_input), DataType.BIT)
+                input_text = f"{bit_input} Bit"
+                
+                self.info_ui.findChild(QtWidgets.QLineEdit, "input_add_percent_2").setText(str(result["Byte"]))
+                
+            elif byte_input and not bit_input:
+                result = InformatikRechner.convert_data(float(byte_input), DataType.BYTE)
+                input_text = f"{byte_input} Byte"
+                
+                self.info_ui.findChild(QtWidgets.QLineEdit, "input_add_value_2").setText(str(result["Bit"]))
+            
+            else:
+                raise ValueError("Bitte nur ein Feld ausfüllen")
+            
+            result_text = f"Bit: {result.get('Bit', bit_input)}, Byte: {result.get('Byte', byte_input)}"
+            self.add_to_results_table(input_text, result_text, "Informatik")
+            
+        except ValueError as e:
+            QtWidgets.QMessageBox.warning(self, "Fehler", str(e))
+        except Exception as e:
+            QtWidgets.QMessageBox.warning(self, "Fehler", f"Ein Fehler ist aufgetreten: {str(e)}")
+
     def show_school_module(self):
         self.school_ui = QtWidgets.QWidget()
         uic.loadUi(SCHOOL_UI_FILE, self.school_ui)
@@ -443,7 +550,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if value == Modules.GEOMETRY.value:
             self.show_geometry_module()
         elif value == Modules.INFO.value:
-            pass
+            self.show_info_module()
         elif value == Modules.PERCENTAGE.value:
             self.show_percentage_module()
         elif value == Modules.CREDIT.value:
