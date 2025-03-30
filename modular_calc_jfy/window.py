@@ -7,6 +7,7 @@ from PyQt6 import QtWidgets, uic, QtCore, QtGui
 
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
 from modular_calc_jfy.backup import Backup
+from modular_calc_jfy.modules.school import SchoolGrades
 
 
 # Determine correct path for dev and prod
@@ -27,6 +28,8 @@ CONSOLE_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/co
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
 GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
+SCHOOL_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/school_module.ui"
+
 
 VERSION = "0.1.0" # "0.5.0"
 
@@ -40,7 +43,7 @@ class Modules(Enum):
     MATH = "math"
     CREDIT = "credit"
 
-enabled_modules = ["geometry", "percentage", "credit"]
+enabled_modules = ["geometry", "percentage", "credit", "school"]
 
 
 COPYRIGHT = """
@@ -86,13 +89,19 @@ class MainWindow(QtWidgets.QMainWindow):
         self.result_display = self.findChild(QtWidgets.QLabel, "calc_display")
         self.result_display.setText("")
 
+        self.current_calculate = Modules.CALCULATOR
+        self.current_input = self.calc_input
+        self.current_input_field = self.input_field
+        self.current_result = ""
+        self.current_result_field = self.result_display
+
         self.results_table = self.findChild(QtWidgets.QTableWidget, "table_calculations")
         if self.results_table.columnCount() < 4:
             self.results_table.setColumnCount(4)
             header_item = QtWidgets.QTableWidgetItem("Modul")
             self.results_table.setHorizontalHeaderItem(3, header_item)
 
-        self.input_field.textChanged.connect(self.update_input)
+        self.current_input_field.textChanged.connect(self.update_input)
 
         for i in range(10):
             getattr(self, f"calc_btn_{i}").clicked.connect(lambda _, x=i: self.add_to_input(str(x)))
@@ -104,7 +113,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.calc_btn_dot.clicked.connect(lambda: self.add_to_input("."))
         self.calc_btn_bracketL.clicked.connect(lambda: self.add_to_input("("))
         self.calc_btn_bracketR.clicked.connect(lambda: self.add_to_input(")"))
-        self.calc_btn_eq.clicked.connect(self.calculate)
+        self.calc_btn_eq.clicked.connect(self.calc_factory)
         self.calc_btn_c.clicked.connect(self.clear_input)
         self.calc_btn_save.clicked.connect(self.save_result)
 
@@ -141,14 +150,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.show_module(value="calculator")
 
     def update_input(self):
-        self.calc_input = self.input_field.text()
+        self.current_input = self.current_input_field.text()
 
     def add_to_input(self, value):
-        self.calc_input += value
-        self.input_field.setText(self.calc_input)
+        if self.current_calculate == Modules.SCHOOL and self.current_input != "":
+            value = f",{value}"
+        self.current_input += value
+        self.current_input_field.setText(self.current_input)
+
+    def calc_factory(self):
+        match self.current_calculate:
+            case Modules.CALCULATOR:
+                self.calculate()
+            case Modules.SCHOOL:
+                self.school_calculate()
 
     def calculate(self):
         try:
+            self.calc_input = self.current_input
             result = str(round(self.calculator.calc(self.calc_input), 6))
             self.result_display.setText(result)
 
@@ -160,13 +179,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.result_display.setText(f"Error: {e}")
     
     def clear_input(self):
-        self.calc_input = ""
-        self.input_field.setText("")
-        self.result_display.setText("")
+        self.current_input = ""
+        self.current_input_field.setText("")
+        self.current_result_field.setText("")
 
     def save_result(self):
         clipboard = QtWidgets.QApplication.clipboard()
-        clipboard.setText(self.result_display.text())
+        clipboard.setText(self.current_result_field.text())
     
     def add_clipboard_input(self):
         clipboard = QtWidgets.QApplication.clipboard()
@@ -221,13 +240,13 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stacked_widget.setCurrentIndex(0)
         self.setWindowTitle("Rechnerprojekt - Startmodul")
 
+        self.current_input = ""
+        self.current_input_field = self.input_field
+        self.current_calculate = Modules.CALCULATOR
+
     def show_percentage_module(self):
         self.percentage_ui = QtWidgets.QWidget()
         uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
-
-        btn_back_percentage = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_back_percentage")
-        if btn_back_percentage:
-            btn_back_percentage.clicked.connect(self.show_main_view)
 
         percentage_widget_index = -1
         for i in range(self.stacked_widget.count()):
@@ -249,10 +268,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.credit_ui = QtWidgets.QWidget()
         uic.loadUi(CREDIT_UI_FILE, self.credit_ui)
 
-        btn_back_credit = self.credit_ui.findChild(QtWidgets.QPushButton, "btn_back_credit")
-        if btn_back_credit:
-            btn_back_credit.clicked.connect(self.show_main_view)
-
         credit_widget_index = -1
         for i in range(self.stacked_widget.count()):
             if self.stacked_widget.widget(i) == self.credit_ui:
@@ -273,10 +288,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.geometry_ui = QtWidgets.QWidget()
         uic.loadUi(GEOMETRY_UI_FILE, self.geometry_ui)
 
-        btn_back_geometry = self.geometry_ui.findChild(QtWidgets.QPushButton, "btn_back_geometry")
-        if btn_back_geometry:
-            btn_back_geometry.clicked.connect(self.show_main_view)
-
         geometry_widget_index = -1
         for i in range(self.stacked_widget.count()):
             if self.stacked_widget.widget(i) == self.geometry_ui:
@@ -292,6 +303,40 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stacked_widget.setCurrentWidget(self.geometry_ui)
         
         self.setWindowTitle("Rechnerprojekt - Geometrie")
+
+    def show_school_module(self):
+        self.school_ui = QtWidgets.QWidget()
+        uic.loadUi(SCHOOL_UI_FILE, self.school_ui)
+
+        school_widget_index = -1
+        for i in range(self.stacked_widget.count()):
+            if self.stacked_widget.widget(i) == self.school_ui:
+                school_widget_index = i
+                break
+        
+        if school_widget_index != -1:
+            old_widget = self.stacked_widget.widget(school_widget_index)
+            self.stacked_widget.removeWidget(old_widget)
+            old_widget.deleteLater()
+        
+        self.stacked_widget.addWidget(self.school_ui)
+        self.stacked_widget.setCurrentWidget(self.school_ui)
+        
+        self.setWindowTitle("Rechnerprojekt - Schulnoten")
+
+        self.current_input_field = self.school_ui.input
+        self.current_result_field = self.school_ui.result
+        self.current_calculate = Modules.SCHOOL
+
+    def school_calculate(self):
+        try:
+            
+            result = SchoolGrades.calculate(self.current_input.split(","))
+            self.school_ui.result.setText(f"Anzahl: {result["count"]}\nSumme: {result["sum"]}\nDurchschnitt: {result["avg"]}")
+            self.add_to_results_table(input_value=self.current_input, result=str(result), module_name="Schulnotenrechner")
+        except Exception as exc:
+            self.school_ui.result.setText(str(exc))
+        
 
     def add_to_results_table(self, input_value, result, module_name):
         current_date = QtCore.QDate.currentDate().toString("dd.MM.yyyy")
@@ -318,11 +363,13 @@ class MainWindow(QtWidgets.QMainWindow):
         elif value == Modules.CREDIT.value:
             self.show_credit_module()
         elif value == Modules.SCHOOL.value:
-            pass
+            self.show_school_module()
         elif value == Modules.MATH.value:
             pass
         else:
             self.show_main_view()
+        
+        self.current_input_field.textChanged.connect(self.update_input)
 
     def about_team(self):
         QtWidgets.QMessageBox.information(self, "Über das Team", "Sarah Zimmermann\nKenny Schilde\nTommy Pahlitzsch\nJan Meineke")
