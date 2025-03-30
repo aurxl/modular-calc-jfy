@@ -167,6 +167,11 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.school_calculate()
             case Modules.PERCENTAGE:
                 self.calculate_percentage()
+            case Modules.INFO:
+                if self.info_ui.current_view == 0:
+                    self.calculate_bit_byte()
+                else:
+                    self.calculate_number_systems()
 
     def calculate(self):
         try:
@@ -184,11 +189,13 @@ class MainWindow(QtWidgets.QMainWindow):
     def clear_input(self):
         self.current_input = ""
         self.current_input_field.setText("")
-        self.current_result_field.setText("")
+        if self.current_result_field:
+            self.current_result_field.setText("")
 
     def save_result(self):
-        clipboard = QtWidgets.QApplication.clipboard()
-        clipboard.setText(self.current_result_field.text())
+        if self.current_result_field:
+            clipboard = QtWidgets.QApplication.clipboard()
+            clipboard.setText(self.current_result_field.text())
     
     def add_clipboard_input(self):
         clipboard = QtWidgets.QApplication.clipboard()
@@ -251,10 +258,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.percentage_ui = QtWidgets.QWidget()
         uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
 
-        btn_back_percentage = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_back_percentage")
-        if btn_back_percentage:
-            btn_back_percentage.clicked.connect(self.show_main_view)
-
         # Finde UI-Elemente
         self.combo_function = self.percentage_ui.findChild(QtWidgets.QComboBox, "combo_function")
         self.stacked_inputs = self.percentage_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs")
@@ -266,6 +269,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Initialisiere die Anzeige
         self.on_percentage_function_changed(0)
+        self.combo_function.currentIndexChanged.connect(self.on_percentage_function_changed)
 
         percentage_widget_index = -1
         for i in range(self.stacked_widget.count()):
@@ -452,9 +456,21 @@ class MainWindow(QtWidgets.QMainWindow):
         
         self.setWindowTitle("Rechnerprojekt - Informationstechnologie")
 
+        self.info_ui.input_add_value_2.focusInEvent = lambda event: self.set_current_input_field(self.info_ui.input_add_value_2)
+        self.info_ui.input_add_percent_2.focusInEvent = lambda event: self.set_current_input_field(self.info_ui.input_add_percent_2)
+
+        self.current_input_field = self.info_ui.input_add_value_2
+        self.current_result_field = None
+        self.current_calculate = Modules.INFO
+
     def on_info_function_changed(self, index):
         """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
         self.stacked_inputs_info.setCurrentIndex(index)
+        self.info_ui.current_view = index
+        if index == 1:
+            self.current_input_field = self.info_ui.input_sub_value_2
+        
+        self.current_input = ""
         
     def calculate_number_systems(self):
         """Berechnet die Umwandlung zwischen verschiedenen Zahlensystemen."""

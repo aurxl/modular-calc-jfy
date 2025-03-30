@@ -7,8 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>464</width>
-    <height>280</height>
+    <height>291</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <bold>true</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Form</string>
@@ -16,8 +21,8 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
+     <x>0</x>
+     <y>0</y>
      <width>460</width>
      <height>251</height>
     </rect>
@@ -36,8 +41,7 @@
    </property>
    <property name="font">
     <font>
-     <weight>50</weight>
-     <bold>false</bold>
+     <bold>true</bold>
     </font>
    </property>
    <property name="title">
@@ -48,8 +52,8 @@
      <rect>
       <x>10</x>
       <y>30</y>
-      <width>121</width>
-      <height>10</height>
+      <width>131</width>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
@@ -62,7 +66,7 @@
       <x>140</x>
       <y>27</y>
       <width>301</width>
-      <height>20</height>
+      <height>31</height>
      </rect>
     </property>
     <item>
@@ -110,6 +114,11 @@
         <width>113</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>true</bold>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="label_add_percent_2">
@@ -192,10 +201,10 @@
      <widget class="QLineEdit" name="input_sub_value_2">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>112</x>
         <y>50</y>
-        <width>113</width>
-        <height>20</height>
+        <width>121</width>
+        <height>21</height>
        </rect>
       </property>
      </widget>
@@ -313,6 +322,7 @@
        </property>
        <property name="font">
         <font>
+         <bold>true</bold>
          <kerning>true</kerning>
         </font>
        </property>
