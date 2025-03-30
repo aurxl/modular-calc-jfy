@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
+    <width>477</width>
     <height>300</height>
    </rect>
   </property>
@@ -16,8 +16,8 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>10</y>
+     <x>0</x>
+     <y>0</y>
      <width>460</width>
      <height>280</height>
     </rect>
@@ -36,8 +36,7 @@
    </property>
    <property name="font">
     <font>
-     <weight>50</weight>
-     <bold>false</bold>
+     <bold>true</bold>
     </font>
    </property>
    <property name="title">
@@ -106,7 +105,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_add">
      <widget class="QLabel" name="label_add_value">

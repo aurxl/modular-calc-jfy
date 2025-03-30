@@ -165,6 +165,8 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.calculate()
             case Modules.SCHOOL:
                 self.school_calculate()
+            case Modules.PERCENTAGE:
+                self.calculate_percentage()
 
     def calculate(self):
         try:
@@ -173,12 +175,12 @@ class MainWindow(QtWidgets.QMainWindow):
             self.result_display.setText(result)
 
             self.add_to_results_table(self.calc_input, result, "Grundrechner")
-            
+
             self.calc_input = None
             self.input_field.setText(self.calc_input)
         except (InvalidExpressionError, Exception) as e:
             self.result_display.setText(f"Error: {e}")
-    
+
     def clear_input(self):
         self.current_input = ""
         self.current_input_field.setText("")
@@ -280,6 +282,28 @@ class MainWindow(QtWidgets.QMainWindow):
         self.stacked_widget.setCurrentWidget(self.percentage_ui)
         
         self.setWindowTitle("Rechnerprojekt - Prozentrechner")
+
+        self.percentage_ui.input_add_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_add_value)
+        self.percentage_ui.input_add_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_add_percent)
+        self.percentage_ui.input_gross_net.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_gross_net)
+        self.percentage_ui.input_gross_tax.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_gross_tax)
+        self.percentage_ui.input_net_gross.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_net_gross)
+        self.percentage_ui.input_net_tax.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_net_tax)
+        self.percentage_ui.input_of_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_of_percent)
+        self.percentage_ui.input_of_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_of_value)
+        self.percentage_ui.input_percentage_base.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_percentage_base)
+        self.percentage_ui.input_percentage_part.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_percentage_part)
+        self.percentage_ui.input_sub_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_sub_percent)
+        self.percentage_ui.input_sub_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_sub_value)
+
+        self.current_input_field = self.percentage_ui.input_add_value
+        self.current_result_field = self.percentage_ui.result_value
+        self.current_calculate = Modules.PERCENTAGE
+
+    def set_current_input_field(self, object):
+        self.current_input = ""
+        self.current_input_field = object
+        self.current_input_field.textChanged.connect(self.update_input)
 
     def on_percentage_function_changed(self, index):
         """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
@@ -452,7 +476,7 @@ class MainWindow(QtWidgets.QMainWindow):
             
             input_text = f"Umrechnung {value} (Basis 10)"
             result_text = f"Bin: {binary}, Ter: {ternary}, Okt: {octal}, Dez: {decimal_value}"
-            self.add_to_results_table(input_text, result_text, "Informatik")
+            self.add_to_results_table(input_text, result_text, "Informationstechnik")
             
         except ValueError:
             self.info_ui.findChild(QtWidgets.QLabel, "result_value_2").setText("Fehler")
@@ -557,12 +581,14 @@ class MainWindow(QtWidgets.QMainWindow):
             self.show_credit_module()
         elif value == Modules.SCHOOL.value:
             self.show_school_module()
+            self.current_input_field.textChanged.connect(self.update_input)
         elif value == Modules.MATH.value:
             pass
         else:
             self.show_main_view()
-        
-        self.current_input_field.textChanged.connect(self.update_input)
+            self.current_input_field.textChanged.connect(self.update_input)
+
+        self.current_input = ""
 
     def about_team(self):
         QtWidgets.QMessageBox.information(self, "Über das Team", "Sarah Zimmermann\nKenny Schilde\nTommy Pahlitzsch\nJan Meineke")
