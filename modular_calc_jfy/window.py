@@ -43,9 +43,17 @@ class Modules(Enum):
     GEOMETRY = "geometry"
     MATH = "math"
     CREDIT = "credit"
+    TRANSLATION = {
+        CALCULATOR: "Grundrechner",
+        PERCENTAGE: "Prozentrechnung",
+        INFO: "Informationstechnik",
+        SCHOOL: "Schulnotenrechner",
+        GEOMETRY: "Geometrie",
+        CREDIT: "Kreditrechnung",
+        MATH: "Mathematik"
+    }
 
-enabled_modules = ["geometry", "percentage", "credit", "school", "info"]
-
+enabled_modules = ["percentage", "school", "info"]
 
 COPYRIGHT = """
 Copyright (C) 2024 
@@ -146,9 +154,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.action_16.triggered.connect(self.font_16)
 
         # Fill in combo box with enables modules
-        self.combo_box_modules.addItems(["calculator"] + enabled_modules)
+        self.combo_box_modules.addItems([Modules.TRANSLATION.value[Modules.CALCULATOR.value]] + [Modules.TRANSLATION.value[module] for module in enabled_modules])
         self.combo_box_modules.currentTextChanged.connect(self.show_module)
-        self.show_module(value="calculator")
+        self.show_module(value=Modules.TRANSLATION.value[Modules.CALCULATOR.value])
 
     def update_input(self):
         self.current_input = self.current_input_field.text()
@@ -583,22 +591,22 @@ class MainWindow(QtWidgets.QMainWindow):
         self.results_table.setItem(row_position, 3, QtWidgets.QTableWidgetItem(module_name))
 
     def show_module(self, value:str):
-        if not value in Modules:
-            QtWidgets.QMessageBox.information(self, f"Error loading Module {value}")
-            return    
+        # if not value in Modules.TRANSLATION.value.items():
+        #    QtWidgets.QMessageBox.information(self, "Fehler", f"Error loading Module {value}")
+        #    return
 
-        if value == Modules.GEOMETRY.value:
+        if value == Modules.TRANSLATION.value[Modules.GEOMETRY.value]:
             self.show_geometry_module()
-        elif value == Modules.INFO.value:
+        elif value == Modules.TRANSLATION.value[Modules.INFO.value]:
             self.show_info_module()
-        elif value == Modules.PERCENTAGE.value:
+        elif value == Modules.TRANSLATION.value[Modules.PERCENTAGE.value]:
             self.show_percentage_module()
-        elif value == Modules.CREDIT.value:
+        elif value == Modules.TRANSLATION.value[Modules.CREDIT.value]:
             self.show_credit_module()
-        elif value == Modules.SCHOOL.value:
+        elif value == Modules.TRANSLATION.value[Modules.SCHOOL.value]:
             self.show_school_module()
             self.current_input_field.textChanged.connect(self.update_input)
-        elif value == Modules.MATH.value:
+        elif value == Modules.TRANSLATION.value[Modules.MATH.value]:
             pass
         else:
             self.show_main_view()
