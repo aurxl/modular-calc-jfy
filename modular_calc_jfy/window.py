@@ -93,7 +93,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.calculator = Calculator()
         self.calc_input = ""
-        
+
         self.input_field = self.findChild(QtWidgets.QLineEdit, "calc_input")
         self.result_display = self.findChild(QtWidgets.QLabel, "calc_display")
         self.result_display.setText("")
@@ -146,7 +146,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Set Font
         self.action_arial.triggered.connect(self.font_arial)
         self.action_sans_serif.triggered.connect(self.font_sans_serif)
-        self.action_helvetica.triggered.connect(self.font_helvetica)
+        self.action_comic_sans.triggered.connect(self.font_comic_sans)
         self.action_times_new_roman.triggered.connect(self.font_times_new_roman)
         self.action_10.triggered.connect(self.font_10)
         self.action_12.triggered.connect(self.font_12)
@@ -660,8 +660,8 @@ class MainWindow(QtWidgets.QMainWindow):
     def font_sans_serif(self):
         self.set_font_type("Sans Serif")
 
-    def font_helvetica(self):
-        self.set_font_type("Helvetica")
+    def font_comic_sans(self):
+        self.set_font_type("Comic Sans MS")
 
     def font_times_new_roman(self):
         self.set_font_type("Times New Roman")
