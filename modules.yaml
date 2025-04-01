@@ -1,0 +1,5 @@
+# Optionen: percentage, info, school, geometry, credit, math
+modules:
+  - percentage
+  - info
+  - school

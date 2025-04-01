@@ -1,10 +1,10 @@
 import sys
 import os
 
-# from importlib import metadata
 from enum import Enum
 from pathlib import Path
 from PyQt6 import QtWidgets, uic, QtCore, QtGui
+import yaml
 
 from modular_calc_jfy.calculator import Calculator, InvalidExpressionError
 from modular_calc_jfy.backup import Backup
@@ -32,8 +32,16 @@ CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_mo
 GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometry_module.ui"
 SCHOOL_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/school_module.ui"
 
+try:
+    CONFIG = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/../modules.yaml"
+except:
+    CONFIG = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/modules.yaml"
 
-VERSION = "0.1.0" # "0.5.0"
+with open(CONFIG, "r") as config_file:
+    config_data = yaml.safe_load(config_file)
+    enabled_modules = config_data.get("modules", [])
+
+VERSION = "1.0.0"
 
 
 class Modules(Enum):
@@ -54,7 +62,6 @@ class Modules(Enum):
         MATH: "Mathematik"
     }
 
-enabled_modules = ["percentage", "school", "info"]
 
 COPYRIGHT = """
 Copyright (C) 2024 

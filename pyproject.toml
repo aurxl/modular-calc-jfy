@@ -11,6 +11,7 @@ PyQt6 = "^6.7.1"
 pytest = "^8.3.4"
 pycryptodome = "^3.22.0"
 importlib = "^1.0.4"
+pyyaml = "^6.0.2"
 
 
 [build-system]
@@ -21,7 +22,7 @@ build-backend = "poetry.core.masonry.api"
 jfy = "modular_calc_jfy.__main__:main"
 
 [tool.poetry-pyinstaller-plugin.include]
-"modular_calc_jfy/*" = "."
+"modular_calc_jfy/modules.yaml" = "."
 "modular_calc_jfy/styles" = "./styles"
 
 
