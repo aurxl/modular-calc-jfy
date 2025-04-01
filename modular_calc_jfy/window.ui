@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1084</width>
-    <height>822</height>
+    <width>1261</width>
+    <height>1011</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,81 +25,142 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="3" rowspan="4">
-     <widget class="QTableWidget" name="table_calculations">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+    <item row="0" column="1">
+     <widget class="QStackedWidget" name="stackedWidget">
+      <property name="enabled">
+       <bool>true</bool>
       </property>
       <property name="minimumSize">
        <size>
-        <width>300</width>
-        <height>0</height>
+        <width>0</width>
+        <height>300</height>
        </size>
       </property>
-      <property name="mouseTracking">
-       <bool>false</bool>
+      <property name="maximumSize">
+       <size>
+        <width>460</width>
+        <height>1000</height>
+       </size>
       </property>
-      <property name="layoutDirection">
-       <enum>Qt::LayoutDirection::LeftToRight</enum>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
-      </property>
-      <property name="rowCount">
+      <property name="currentIndex">
        <number>0</number>
       </property>
-      <property name="columnCount">
-       <number>4</number>
-      </property>
-      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderStretchLastSection">
-       <bool>true</bool>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>Datum</string>
+      <widget class="QWidget" name="main">
+       <widget class="QGroupBox" name="calculator">
+        <property name="geometry">
+         <rect>
+          <x>-1</x>
+          <y>0</y>
+          <width>460</width>
+          <height>300</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>460</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="title">
+         <string>Rechnermodul</string>
+        </property>
+        <widget class="QFrame" name="frame">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>80</y>
+           <width>441</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <widget class="QLabel" name="calc_display">
+          <property name="geometry">
+           <rect>
+            <x>30</x>
+            <y>10</y>
+            <width>401</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="calc_display_2">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>20</width>
+            <height>21</height>
+           </rect>
+          </property>
+          <property name="text">
+           <string>=</string>
+          </property>
+         </widget>
+        </widget>
+        <widget class="QLineEdit" name="calc_input">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>30</y>
+           <width>391</width>
+           <height>41</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="clip_btn">
+         <property name="geometry">
+          <rect>
+           <x>410</x>
+           <y>30</y>
+           <width>41</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>📋</string>
+         </property>
+         <property name="icon">
+          <iconset theme="QIcon::ThemeIcon::EditPaste"/>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="None">
+       <property name="enabled">
+        <bool>true</bool>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Eingabewerte</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Ergebnis</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Modul</string>
-       </property>
-      </column>
+       <widget class="QLabel" name="label">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>120</y>
+          <width>271</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Dies sind nicht die droiden die ihr sucht&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
-    </item>
-    <item row="3" column="0">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Orientation::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Policy::Minimum</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>4</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
     <item row="3" column="1">
      <widget class="QGroupBox" name="module_selection">
@@ -359,7 +420,7 @@
         </rect>
        </property>
        <property name="text">
-        <string/>
+        <string>📄</string>
        </property>
        <property name="icon">
         <iconset theme="QIcon::ThemeIcon::EditCopy"/>
@@ -446,7 +507,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Nebenrechnung starten</string>
+          <string>Nebenrechnung</string>
          </property>
         </widget>
        </item>
@@ -479,145 +540,123 @@
       </layout>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QStackedWidget" name="stackedWidget">
-      <property name="enabled">
-       <bool>true</bool>
+    <item row="0" column="4">
+     <spacer name="horizontalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Policy::Minimum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>4</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="3" rowspan="4">
+     <widget class="QTableWidget" name="table_calculations">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="minimumSize">
        <size>
-        <width>0</width>
-        <height>300</height>
+        <width>300</width>
+        <height>0</height>
        </size>
       </property>
-      <property name="maximumSize">
-       <size>
-        <width>460</width>
-        <height>1000</height>
-       </size>
+      <property name="mouseTracking">
+       <bool>false</bool>
       </property>
-      <property name="currentIndex">
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+      </property>
+      <property name="dragEnabled">
+       <bool>true</bool>
+      </property>
+      <property name="showGrid">
+       <bool>true</bool>
+      </property>
+      <property name="cornerButtonEnabled">
+       <bool>false</bool>
+      </property>
+      <property name="rowCount">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="main">
-       <widget class="QGroupBox" name="calculator">
-        <property name="geometry">
-         <rect>
-          <x>-1</x>
-          <y>0</y>
-          <width>460</width>
-          <height>300</height>
-         </rect>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>460</width>
-          <height>300</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="title">
-         <string>Rechnermodul</string>
-        </property>
-        <widget class="QFrame" name="frame">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>80</y>
-           <width>441</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Raised</enum>
-         </property>
-         <widget class="QLabel" name="calc_display">
-          <property name="geometry">
-           <rect>
-            <x>30</x>
-            <y>10</y>
-            <width>401</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="calc_display_2">
-          <property name="geometry">
-           <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>20</width>
-            <height>21</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>=</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QLineEdit" name="calc_input">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>30</y>
-           <width>391</width>
-           <height>41</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="clip_btn">
-         <property name="geometry">
-          <rect>
-           <x>410</x>
-           <y>30</y>
-           <width>41</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset theme="QIcon::ThemeIcon::EditPaste"/>
-         </property>
-        </widget>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="None">
-       <property name="enabled">
-        <bool>true</bool>
+      <property name="columnCount">
+       <number>4</number>
+      </property>
+      <attribute name="horizontalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>100</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>150</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderMinimumSectionSize">
+       <number>22</number>
+      </attribute>
+      <attribute name="verticalHeaderDefaultSectionSize">
+       <number>30</number>
+      </attribute>
+      <attribute name="verticalHeaderHighlightSections">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Datum</string>
        </property>
-       <widget class="QLabel" name="label">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>100</x>
-          <y>120</y>
-          <width>271</width>
-          <height>41</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Dies sind nicht die droiden die ihr sucht&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
+      </column>
+      <column>
+       <property name="text">
+        <string>Eingabewerte</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ergebnis</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Modul</string>
+       </property>
+      </column>
      </widget>
     </item>
-    <item row="0" column="4">
-     <spacer name="horizontalSpacer_3">
+    <item row="3" column="0">
+     <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Orientation::Horizontal</enum>
       </property>
@@ -639,7 +678,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1084</width>
+     <width>1261</width>
      <height>23</height>
     </rect>
    </property>
@@ -738,7 +777,7 @@
   </action>
   <action name="action_fancy">
    <property name="text">
-    <string>Console</string>
+    <string>Fancy</string>
    </property>
   </action>
   <action name="action_system">
