@@ -22,9 +22,9 @@ build-backend = "poetry.core.masonry.api"
 jfy = "modular_calc_jfy.__main__:main"
 
 [tool.poetry-pyinstaller-plugin.include]
-"modular_calc_jfy/modules.yaml" = "."
-"modular_calc_jfy/styles" = "./styles"
-
+"modules.yaml" = "."
+"modular_calc_jfy/*" = "."
+"styles" = "./styles"
 
 [tool.poetry-pyinstaller-plugin.scripts]
 modular_calc_jfy = { source = "modular_calc_jfy/__main__.py", windowed = true,  type = "onefile", icon="./calc.ico" }

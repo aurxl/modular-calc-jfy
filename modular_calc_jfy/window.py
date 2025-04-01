@@ -22,10 +22,6 @@ def determine_MEIPASS(path:str):
 
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
-
-DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
-LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
-FANCY_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/fancy.qss"
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
 INFO_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/info_module.ui"
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
@@ -33,9 +29,16 @@ GEOMETRY_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/geometr
 SCHOOL_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/school_module.ui"
 
 try:
-    CONFIG = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/../modules.yaml"
-except:
+    sys._MEIPASS
     CONFIG = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/modules.yaml"
+    DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
+    LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
+    FANCY_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/fancy.qss"
+except:
+    CONFIG = f"{Path(__file__).parent.resolve()}/../modules.yaml"
+    DARK_STYLE = f"{Path(__file__).parent.resolve()}/../styles/dark_grey.qss"
+    LIGHT_STYLE = f"{Path(__file__).parent.resolve()}/../styles/light.qss"
+    FANCY_STYLE = f"{Path(__file__).parent.resolve()}/../styles/fancy.qss"
 
 with open(CONFIG, "r") as config_file:
     config_data = yaml.safe_load(config_file)
