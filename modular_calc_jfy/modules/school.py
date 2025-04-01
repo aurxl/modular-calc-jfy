@@ -9,7 +9,7 @@ class SchoolGrades:
 
         # Überprüfung, ob alle Werte Zahlen sind
         try:
-            grades = [float(g) for g in grades]
+            grades = [int(g) for g in grades]
         except ValueError:
             raise ValueError("Alle Werte müssen Zahlen sein.")
 

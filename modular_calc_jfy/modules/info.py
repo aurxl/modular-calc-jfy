@@ -17,8 +17,8 @@ class InformatikRechner:
     def convert_number(value, number_type: NumberType):
         """Konvertiert eine Zahl in verschiedene Zahlensysteme."""
         if not isinstance(value, int):
-            return "Fehler: Eingabe muss eine ganze Zahl sein."
-
+            return "Fehler: Eingabe muss eine ganze Zahl sein." 
+            
         decimal_value = int(str(value), number_type.value)  # Umwandlung in Dezimal
 
         return {
