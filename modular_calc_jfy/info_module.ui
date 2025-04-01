@@ -12,7 +12,7 @@
   </property>
   <property name="font">
    <font>
-    <bold>true</bold>
+    <bold>false</bold>
    </font>
   </property>
   <property name="windowTitle">
@@ -41,7 +41,7 @@
    </property>
    <property name="font">
     <font>
-     <bold>true</bold>
+     <bold>false</bold>
     </font>
    </property>
    <property name="title">
@@ -56,6 +56,11 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Funktion auswählen:</string>
     </property>
@@ -63,11 +68,16 @@
    <widget class="QComboBox" name="combo_function_2">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>240</x>
       <y>27</y>
-      <width>301</width>
+      <width>201</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>false</bold>
+     </font>
     </property>
     <item>
      <property name="text">
@@ -89,18 +99,28 @@
       <height>181</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <bold>false</bold>
+     </font>
+    </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_add_2">
      <widget class="QLabel" name="label_add_value_2">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>40</y>
         <width>101</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>Bit</string>
@@ -110,14 +130,14 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>50</y>
+        <y>40</y>
         <width>113</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <bold>true</bold>
+        <bold>false</bold>
        </font>
       </property>
      </widget>
@@ -127,8 +147,13 @@
         <x>10</x>
         <y>80</y>
         <width>101</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>Byte</string>
@@ -138,10 +163,15 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>80</y>
+        <y>79</y>
         <width>113</width>
-        <height>20</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
       </property>
      </widget>
      <widget class="QLabel" name="label_add_2">
@@ -153,6 +183,11 @@
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Konvertiert zwischen Bit und Byte</string>
       </property>
@@ -161,10 +196,15 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>110</y>
+        <y>120</y>
         <width>111</width>
-        <height>30</height>
+        <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <bold>false</bold>
+       </font>
       </property>
       <property name="text">
        <string>Konvertieren</string>
@@ -191,7 +231,7 @@
         <x>10</x>
         <y>50</y>
         <width>101</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">
@@ -204,7 +244,7 @@
         <x>112</x>
         <y>50</y>
         <width>121</width>
-        <height>21</height>
+        <height>31</height>
        </rect>
       </property>
      </widget>
@@ -337,7 +377,7 @@
         <x>300</x>
         <y>44</y>
         <width>111</width>
-        <height>30</height>
+        <height>31</height>
        </rect>
       </property>
       <property name="text">

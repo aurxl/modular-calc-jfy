@@ -359,7 +359,10 @@
         </rect>
        </property>
        <property name="text">
-        <string>Speichern</string>
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset theme="QIcon::ThemeIcon::EditCopy"/>
        </property>
       </widget>
       <widget class="QPushButton" name="calc_btn_9">
@@ -582,7 +585,10 @@
           </rect>
          </property>
          <property name="text">
-          <string>📋</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset theme="QIcon::ThemeIcon::EditPaste"/>
          </property>
         </widget>
        </widget>
@@ -679,8 +685,14 @@
     <addaction name="menuFont"/>
    </widget>
    <widget class="QMenu" name="menu_about">
+    <property name="tearOffEnabled">
+     <bool>false</bool>
+    </property>
     <property name="title">
      <string>Über Uns</string>
+    </property>
+    <property name="icon">
+     <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
     </property>
     <addaction name="action_team"/>
     <addaction name="action_software"/>
@@ -692,19 +704,24 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_team">
    <property name="icon">
-    <iconset>
-     <normaloff>../calc.png</normaloff>../calc.png</iconset>
+    <iconset theme="QIcon::ThemeIcon::UserOffline"/>
    </property>
    <property name="text">
     <string>Team</string>
    </property>
   </action>
   <action name="action_software">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::FormatJustifyLeft"/>
+   </property>
    <property name="text">
     <string>Software</string>
    </property>
   </action>
   <action name="action_copyright">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::SecurityLow"/>
+   </property>
    <property name="text">
     <string>Copyright</string>
    </property>

@@ -36,7 +36,7 @@
    </property>
    <property name="font">
     <font>
-     <bold>true</bold>
+     <bold>false</bold>
     </font>
    </property>
    <property name="title">
