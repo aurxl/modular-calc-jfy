@@ -81,12 +81,15 @@ class ModuleHandler:
 
     def load_module(self, module_name, ui_file, setup_function):
         if module_name in self.modules:
+            for field in self.modules[module_name].findChildren(QtWidgets.QLineEdit):
+                field.setText("")
             self.stacked_widget.setCurrentWidget(self.modules[module_name])
             setup_function(self.modules[module_name])
             return
 
         module_ui = QtWidgets.QWidget()
         uic.loadUi(ui_file, module_ui)
+
         setup_function(module_ui)
         self.stacked_widget.addWidget(module_ui)
         self.modules[module_name] = module_ui
@@ -254,7 +257,6 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.calculate_bit_byte()
                 else:
                     self.calculate_number_systems()
-        self.current_input_field.setText("")
 
     def calculate(self):
         try:
