@@ -9,7 +9,7 @@ from modular_calc_jfy.modules.school import SchoolGrades
     ]
 )
 def test_calculate(args, expected):
-    calc = SchoolGrades.calculate(*args)
+    calc = SchoolGrades.calculate([*args])
 
     assert pytest.approx(calc["avg"]) == expected["avg"]
     assert calc["sum"] == expected["sum"]
@@ -23,5 +23,5 @@ def test_calculate(args, expected):
 )
 def test_calculate_invalid(args):
     with pytest.raises(ValueError):
-        calc = SchoolGrades.calculate(*args)
+        SchoolGrades.calculate([*args])
 
