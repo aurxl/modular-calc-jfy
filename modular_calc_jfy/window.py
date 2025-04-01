@@ -1,4 +1,5 @@
 import sys
+import os
 
 # from importlib import metadata
 from enum import Enum
@@ -22,9 +23,9 @@ def determine_MEIPASS(path:str):
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
 
-DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
+DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_blue.qss"
 LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
-CONSOLE_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/console.qss"
+FANCY_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/fancy.qss"
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
 INFO_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/info_module.ui"
 CREDIT_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/credit_module.ui"
@@ -72,12 +73,72 @@ The use of this software is only permitted when distributed
 by the official publisher or one of it's offical distributors.
 """
 
+class ModuleHandler:
+    def __init__(self, main_window):
+        self.main_window = main_window
+        self.stacked_widget = main_window.stacked_widget
+        self.modules = {}
+
+    def load_module(self, module_name, ui_file, setup_function):
+        if module_name in self.modules:
+            self.stacked_widget.setCurrentWidget(self.modules[module_name])
+            return
+
+        module_ui = QtWidgets.QWidget()
+        uic.loadUi(ui_file, module_ui)
+        setup_function(module_ui)
+        self.stacked_widget.addWidget(module_ui)
+        self.modules[module_name] = module_ui
+        self.stacked_widget.setCurrentWidget(module_ui)
+        self.main_window.setWindowTitle(f"Rechnerprojekt - {Modules.TRANSLATION.value[module_name]}")
+
+class ThemeFontHandler:
+    def __init__(self, app):
+        self.app = app
+        self.theme = "System"
+        self.current_theme_file = None
+
+    def set_theme(self, theme_file):
+        """Set the application theme using a stylesheet file."""
+        self.theme = theme_file
+        self.current_theme_file = theme_file
+        file = QtCore.QFile(theme_file)
+        file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
+        contents = file.readAll().data().decode()
+        self.app.setStyleSheet(contents)
+
+    def set_system_theme(self):
+        """Reset to the system default theme."""
+        self.theme = "System"
+        self.app.setStyleSheet(f"QWidget {{font: {self.app.font().pointSize()}pt {self.app.font().family()};}}")
+
+    def set_font_type(self, font_type):
+        """Set the font type for the application."""
+        self.app.setFont(QtGui.QFont(font_type, self.app.font().pointSize()))
+        self._apply_theme_with_font()
+
+    def set_font_size(self, font_size):
+        """Set the font size for the application."""
+        self.app.setFont(QtGui.QFont(self.app.font().family(), font_size))
+        self._apply_theme_with_font()
+
+    def _apply_theme_with_font(self):
+        """Reapply the current theme with updated font settings."""
+        if self.theme != "System" and self.current_theme_file:
+            file = QtCore.QFile(self.current_theme_file)
+            file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
+            contents = file.readAll().data().decode()
+            self.app.setStyleSheet(contents + f"QWidget {{font: {self.app.font().pointSize()}pt {self.app.font().family()};}}")
+        else:
+            self.set_system_theme()
+
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__(None)
         uic.loadUi(UI_FILE, self)
         self.app = QtWidgets.QApplication.instance()
-        self.theme = "System"
+
+        self.theme_font_handler = ThemeFontHandler(self.app)
 
         self.stacked_widget = self.findChild(QtWidgets.QStackedWidget, "stackedWidget")
         
@@ -139,24 +200,36 @@ class MainWindow(QtWidgets.QMainWindow):
         self.action_software.triggered.connect(self.about_software)
         self.action_copyright.triggered.connect(self.about_copyright)
         # Set themes
-        self.action_system.triggered.connect(self.set_system_theme)
-        self.action_dark.triggered.connect(self.theme_dark)
-        self.action_light.triggered.connect(self.theme_light)
-        self.action_console.triggered.connect(self.theme_console)
+        self.action_system.triggered.connect(self.theme_font_handler.set_system_theme)
+        self.action_dark.triggered.connect(lambda: self.theme_font_handler.set_theme(DARK_STYLE))
+        self.action_light.triggered.connect(lambda: self.theme_font_handler.set_theme(LIGHT_STYLE))
+        self.action_fancy.triggered.connect(lambda: self.theme_font_handler.set_theme(FANCY_STYLE))
         # Set Font
-        self.action_arial.triggered.connect(self.font_arial)
-        self.action_sans_serif.triggered.connect(self.font_sans_serif)
-        self.action_comic_sans.triggered.connect(self.font_comic_sans)
-        self.action_times_new_roman.triggered.connect(self.font_times_new_roman)
-        self.action_10.triggered.connect(self.font_10)
-        self.action_12.triggered.connect(self.font_12)
-        self.action_14.triggered.connect(self.font_14)
-        self.action_16.triggered.connect(self.font_16)
+        self.action_arial.triggered.connect(lambda: self.theme_font_handler.set_font_type("Arial"))
+        self.action_sans_serif.triggered.connect(lambda: self.theme_font_handler.set_font_type("Sans Serif"))
+        self.action_comic_sans.triggered.connect(lambda: self.theme_font_handler.set_font_type("Comic Sans MS"))
+        self.action_times_new_roman.triggered.connect(lambda: self.theme_font_handler.set_font_type("Times New Roman"))
+        self.action_10.triggered.connect(lambda: self.theme_font_handler.set_font_size(10))
+        self.action_12.triggered.connect(lambda: self.theme_font_handler.set_font_size(12))
+        self.action_14.triggered.connect(lambda: self.theme_font_handler.set_font_size(14))
+        self.action_16.triggered.connect(lambda: self.theme_font_handler.set_font_size(16))
 
-        # Fill in combo box with enables modules
+        self.module_handler = ModuleHandler(self)
+
+        # Fill in combo box with enabled modules
         self.combo_box_modules.addItems([Modules.TRANSLATION.value[Modules.CALCULATOR.value]] + [Modules.TRANSLATION.value[module] for module in enabled_modules])
         self.combo_box_modules.currentTextChanged.connect(self.show_module)
         self.show_module(value=Modules.TRANSLATION.value[Modules.CALCULATOR.value])
+
+    def setup_input_fields(self, input_fields, result_field=None):
+        for field in input_fields:
+            field.focusInEvent = lambda _, f=field: self.set_current_input_field(f)
+        self.current_input_field = input_fields[0]
+        self.current_result_field = result_field
+
+    def connect_buttons(self, button_mapping):
+        for button, function in button_mapping.items():
+            button.clicked.connect(function)
 
     def update_input(self):
         self.current_input = self.current_input_field.text()
@@ -262,54 +335,33 @@ class MainWindow(QtWidgets.QMainWindow):
         self.current_input_field = self.input_field
         self.current_calculate = Modules.CALCULATOR
 
-    def show_percentage_module(self):
-        self.percentage_ui = QtWidgets.QWidget()
-        uic.loadUi(PERCENTAGE_UI_FILE, self.percentage_ui)
+    def setup_percentage_module(self, module_ui):
+        self.percentage_ui = module_ui
 
-        # Finde UI-Elemente
+        # Find UI elements
         self.combo_function = self.percentage_ui.findChild(QtWidgets.QComboBox, "combo_function")
         self.stacked_inputs = self.percentage_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs")
-        self.btn_calculate = self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_calculate")
         self.result_value = self.percentage_ui.findChild(QtWidgets.QLabel, "result_value")
- 
-        # Verbinde Berechnen-Button mit Funktion
-        self.btn_calculate.clicked.connect(self.calculate_percentage)
 
-        # Initialisiere die Anzeige
-        self.on_percentage_function_changed(0)
+        # Connect combo box and calculate button
         self.combo_function.currentIndexChanged.connect(self.on_percentage_function_changed)
+        self.connect_buttons({
+            self.percentage_ui.findChild(QtWidgets.QPushButton, "btn_calculate"): self.calculate_percentage
+        })
 
-        percentage_widget_index = -1
-        for i in range(self.stacked_widget.count()):
-            if self.stacked_widget.widget(i) == self.percentage_ui:
-                percentage_widget_index = i
-                break
-        
-        if percentage_widget_index != -1:
-            old_widget = self.stacked_widget.widget(percentage_widget_index)
-            self.stacked_widget.removeWidget(old_widget)
-            old_widget.deleteLater()
-        
-        self.stacked_widget.addWidget(self.percentage_ui)
-        self.stacked_widget.setCurrentWidget(self.percentage_ui)
-        
-        self.setWindowTitle("Rechnerprojekt - Prozentrechner")
+        # Set up input fields
+        input_fields = [
+            self.percentage_ui.findChild(QtWidgets.QLineEdit, name)
+            for name in [
+                "input_add_value", "input_add_percent", "input_gross_net", "input_gross_tax",
+                "input_net_gross", "input_net_tax", "input_of_percent", "input_of_value",
+                "input_percentage_base", "input_percentage_part", "input_sub_percent", "input_sub_value"
+            ]
+        ]
+        self.setup_input_fields(input_fields, self.result_value)
 
-        self.percentage_ui.input_add_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_add_value)
-        self.percentage_ui.input_add_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_add_percent)
-        self.percentage_ui.input_gross_net.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_gross_net)
-        self.percentage_ui.input_gross_tax.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_gross_tax)
-        self.percentage_ui.input_net_gross.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_net_gross)
-        self.percentage_ui.input_net_tax.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_net_tax)
-        self.percentage_ui.input_of_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_of_percent)
-        self.percentage_ui.input_of_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_of_value)
-        self.percentage_ui.input_percentage_base.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_percentage_base)
-        self.percentage_ui.input_percentage_part.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_percentage_part)
-        self.percentage_ui.input_sub_percent.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_sub_percent)
-        self.percentage_ui.input_sub_value.focusInEvent = lambda event: self.set_current_input_field(self.percentage_ui.input_sub_value)
-
-        self.current_input_field = self.percentage_ui.input_add_value
-        self.current_result_field = self.percentage_ui.result_value
+        # Initialize display
+        self.on_percentage_function_changed(0)
         self.current_calculate = Modules.PERCENTAGE
 
     def set_current_input_field(self, object):
@@ -321,6 +373,23 @@ class MainWindow(QtWidgets.QMainWindow):
         """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
         self.stacked_inputs.setCurrentIndex(index)
         self.result_value.setText("0.00")
+
+        match index:
+            case 0:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_add_value")
+            case 1:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_sub_value")
+            case 2:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_of_value")
+            case 3:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_percentage_base")
+            case 4:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_gross_net")
+            case 5:
+                self.current_input_field = self.percentage_ui.findChild(QtWidgets.QLineEdit, "input_net_gross")
+            case _:
+                self.current_input_field = None
+        self.current_input = ""
 
     def calculate_percentage(self):
         """Berechnet das Ergebnis basierend auf der ausgewählten Funktion und den Eingabewerten."""
@@ -384,91 +453,31 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as e:
             self.result_value.setText(f"Fehler: {str(e)}")
 
-    def show_credit_module(self):
-        self.credit_ui = QtWidgets.QWidget()
-        uic.loadUi(CREDIT_UI_FILE, self.credit_ui)
+    def setup_credit_module(self, module_ui):
+        self.credit_ui = module_ui
 
-        credit_widget_index = -1
-        for i in range(self.stacked_widget.count()):
-            if self.stacked_widget.widget(i) == self.credit_ui:
-                credit_widget_index = i
-                break
-        
-        if credit_widget_index != -1:
-            old_widget = self.stacked_widget.widget(credit_widget_index)
-            self.stacked_widget.removeWidget(old_widget)
-            old_widget.deleteLater()
-        
-        self.stacked_widget.addWidget(self.credit_ui)
-        self.stacked_widget.setCurrentWidget(self.credit_ui)
-        
-        self.setWindowTitle("Rechnerprojekt - Kreditberechnung")
+    def setup_geometry_module(self, module_ui):
+        self.geometry_ui = module_ui
 
-    def show_geometry_module(self):
-        self.geometry_ui = QtWidgets.QWidget()
-        uic.loadUi(GEOMETRY_UI_FILE, self.geometry_ui)
+    def setup_info_module(self, module_ui):
+        self.info_ui = module_ui
 
-        geometry_widget_index = -1
-        for i in range(self.stacked_widget.count()):
-            if self.stacked_widget.widget(i) == self.geometry_ui:
-                geometry_widget_index = i
-                break
-        
-        if geometry_widget_index != -1:
-            old_widget = self.stacked_widget.widget(geometry_widget_index)
-            self.stacked_widget.removeWidget(old_widget)
-            old_widget.deleteLater()
-        
-        self.stacked_widget.addWidget(self.geometry_ui)
-        self.stacked_widget.setCurrentWidget(self.geometry_ui)
-        
-        self.setWindowTitle("Rechnerprojekt - Geometrie")
-
-    def show_info_module(self):
-        self.info_ui = QtWidgets.QWidget()
-        uic.loadUi(INFO_UI_FILE, self.info_ui)
-
-        info_widget_index = -1
-        for i in range(self.stacked_widget.count()):
-            if self.stacked_widget.widget(i) == self.info_ui:
-                info_widget_index = i
-                break
-        
-        if info_widget_index != -1:
-            old_widget = self.stacked_widget.widget(info_widget_index)
-            self.stacked_widget.removeWidget(old_widget)
-            old_widget.deleteLater()
-        
-        # Finde UI-Elemente
         self.combo_function_info = self.info_ui.findChild(QtWidgets.QComboBox, "combo_function_2")
         self.stacked_inputs_info = self.info_ui.findChild(QtWidgets.QStackedWidget, "stacked_inputs_2")
-        
-        # Verbinde ComboBox mit Funktion zum Ändern der angezeigten Eingabefelder
+
         self.combo_function_info.currentIndexChanged.connect(self.on_info_function_changed)
-        
-        # Verbinde Berechnen-Buttons mit Funktionen
-        self.btn_calculate_number_systems = self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_2")
-        self.btn_calculate_bit_byte = self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_3")
-        
-        if self.btn_calculate_number_systems:
-            self.btn_calculate_number_systems.clicked.connect(self.calculate_number_systems)
-        
-        if self.btn_calculate_bit_byte:
-            self.btn_calculate_bit_byte.clicked.connect(self.calculate_bit_byte)
-        
-        # Initialisiere die Anzeige
+        self.connect_buttons({
+            self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_2"): self.calculate_number_systems,
+            self.info_ui.findChild(QtWidgets.QPushButton, "btn_calculate_3"): self.calculate_bit_byte
+        })
+
+        input_fields = [
+            self.info_ui.findChild(QtWidgets.QLineEdit, name)
+            for name in ["input_add_value_2", "input_add_percent_2", "input_sub_value_2"]
+        ]
+        self.setup_input_fields(input_fields)
+
         self.on_info_function_changed(0)
-        
-        self.stacked_widget.addWidget(self.info_ui)
-        self.stacked_widget.setCurrentWidget(self.info_ui)
-        
-        self.setWindowTitle("Rechnerprojekt - Informationstechnologie")
-
-        self.info_ui.input_add_value_2.focusInEvent = lambda event: self.set_current_input_field(self.info_ui.input_add_value_2)
-        self.info_ui.input_add_percent_2.focusInEvent = lambda event: self.set_current_input_field(self.info_ui.input_add_percent_2)
-
-        self.current_input_field = self.info_ui.input_add_value_2
-        self.current_result_field = None
         self.current_calculate = Modules.INFO
 
     def on_info_function_changed(self, index):
@@ -545,35 +554,17 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as e:
             QtWidgets.QMessageBox.warning(self, "Fehler", f"Ein Fehler ist aufgetreten: {str(e)}")
 
-    def show_school_module(self):
-        self.school_ui = QtWidgets.QWidget()
-        uic.loadUi(SCHOOL_UI_FILE, self.school_ui)
+    def setup_school_module(self, module_ui):
+        self.school_ui = module_ui
 
-        school_widget_index = -1
-        for i in range(self.stacked_widget.count()):
-            if self.stacked_widget.widget(i) == self.school_ui:
-                school_widget_index = i
-                break
-        
-        if school_widget_index != -1:
-            old_widget = self.stacked_widget.widget(school_widget_index)
-            self.stacked_widget.removeWidget(old_widget)
-            old_widget.deleteLater()
-        
-        self.stacked_widget.addWidget(self.school_ui)
-        self.stacked_widget.setCurrentWidget(self.school_ui)
-        
-        self.setWindowTitle("Rechnerprojekt - Schulnoten")
-
-        self.current_input_field = self.school_ui.input
-        self.current_result_field = self.school_ui.result
+        self.setup_input_fields([self.school_ui.input], self.school_ui.result)
         self.current_calculate = Modules.SCHOOL
 
     def school_calculate(self):
         try:
             
             result = SchoolGrades.calculate(self.current_input.split(","))
-            self.school_ui.result.setText(f"Anzahl: {result["count"]}\nSumme: {result["sum"]}\nDurchschnitt: {result["avg"]}")
+            self.school_ui.result.setText(f"Anzahl: {result['count']}\nSumme: {result['sum']}\nDurchschnitt: {result['avg']}")
             self.add_to_results_table(input_value=self.current_input, result=str(result), module_name="Schulnotenrechner")
         except Exception as exc:
             self.school_ui.result.setText(str(exc))
@@ -591,20 +582,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.results_table.setItem(row_position, 3, QtWidgets.QTableWidgetItem(module_name))
 
     def show_module(self, value:str):
-        # if not value in Modules.TRANSLATION.value.items():
-        #    QtWidgets.QMessageBox.information(self, "Fehler", f"Error loading Module {value}")
-        #    return
-
         if value == Modules.TRANSLATION.value[Modules.GEOMETRY.value]:
-            self.show_geometry_module()
+            self.module_handler.load_module("geometry", GEOMETRY_UI_FILE, self.setup_geometry_module)
         elif value == Modules.TRANSLATION.value[Modules.INFO.value]:
-            self.show_info_module()
+            self.module_handler.load_module("info", INFO_UI_FILE, self.setup_info_module)
         elif value == Modules.TRANSLATION.value[Modules.PERCENTAGE.value]:
-            self.show_percentage_module()
+            self.module_handler.load_module("percentage", PERCENTAGE_UI_FILE, self.setup_percentage_module)
         elif value == Modules.TRANSLATION.value[Modules.CREDIT.value]:
-            self.show_credit_module()
+            self.module_handler.load_module("credit", CREDIT_UI_FILE, self.setup_credit_module)
         elif value == Modules.TRANSLATION.value[Modules.SCHOOL.value]:
-            self.show_school_module()
+            self.module_handler.load_module("school", SCHOOL_UI_FILE, self.setup_school_module)
             self.current_input_field.textChanged.connect(self.update_input)
         elif value == Modules.TRANSLATION.value[Modules.MATH.value]:
             pass
@@ -623,73 +610,10 @@ class MainWindow(QtWidgets.QMainWindow):
     def about_copyright(self):
         QtWidgets.QMessageBox.information(self, "Über das Copyright", f"{COPYRIGHT}")
 
-    def set_theme(self, theme):
-        self.theme = theme
-        file = QtCore.QFile(theme)
-        file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
-        contents = file.readAll().data().decode()
-        self.app.setStyleSheet(contents)
-
-    def set_system_theme(self):
-        self.theme = "System"
-        self.app.setStyleSheet(f"QWidget {{font: {self.app.font().pointSize()}pt {self.app.font().family()};}}")
-
-    def theme_dark(self):
-        self.set_theme(DARK_STYLE)
-        
-    def theme_light(self):
-        self.set_theme(LIGHT_STYLE)
-
-    def theme_console(self):
-        self.set_theme(CONSOLE_STYLE)
-
-    def set_font_type(self, type:str):
-        contents = ""
-        self.app.setFont(QtGui.QFont(type, self.app.font().pointSize()))
-        
-        if self.theme != "System":
-            file = QtCore.QFile(self.theme)
-            file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
-            contents = file.readAll().data().decode()
-
-        self.app.setStyleSheet(contents + f"QWidget {{font: {self.app.font().pointSize()}pt {type};}}")
-
-    def font_arial(self):
-        self.set_font_type("Arial")
-
-    def font_sans_serif(self):
-        self.set_font_type("Sans Serif")
-
-    def font_comic_sans(self):
-        self.set_font_type("Comic Sans MS")
-
-    def font_times_new_roman(self):
-        self.set_font_type("Times New Roman")
-
-    def set_font_size(self, size:str):
-        contents = ""
-        self.app.setFont(QtGui.QFont(self.app.font().family(), size))
-
-        if self.theme != "System":
-            file = QtCore.QFile(self.theme)
-            file.open(QtCore.QFile.OpenModeFlag.ReadOnly)
-            contents = file.readAll().data().decode()
-
-        self.app.setStyleSheet(contents + f"QWidget {{font: {size}pt {self.app.font().family()};}}")
-
-    def font_10(self):
-        self.set_font_size(10)
-
-    def font_12(self):
-        self.set_font_size(12)
-
-    def font_14(self):
-        self.set_font_size(14)
-
-    def font_16(self):
-        self.set_font_size(16)
-
 if __name__ == "__main__":
+    # Force the use of XCB platform plugin
+    os.environ["QT_QPA_PLATFORM"] = "xcb"
+
     app = QtWidgets.QApplication(sys.argv)
     window = MainWindow()
     window.show()

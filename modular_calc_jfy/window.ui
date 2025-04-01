@@ -654,7 +654,7 @@
      <addaction name="action_system"/>
      <addaction name="action_dark"/>
      <addaction name="action_light"/>
-     <addaction name="action_console"/>
+     <addaction name="action_fancy"/>
     </widget>
     <widget class="QMenu" name="menuFont">
      <property name="title">
@@ -736,7 +736,7 @@
     <string>Light</string>
    </property>
   </action>
-  <action name="action_console">
+  <action name="action_fancy">
    <property name="text">
     <string>Console</string>
    </property>
