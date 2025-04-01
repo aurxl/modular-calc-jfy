@@ -114,7 +114,7 @@ QTabWidget::pane {
 }
 
 QTabBar::tab {
-	padding: 6px 12px;
+	 /* padding: 6px 12px; */
 	color: rgb(230, 230, 230); /* Light gray text */
 	background-color: rgb(35, 35, 35); /* Tab background */
 	border: 1px solid rgb(50, 50, 50); /* Subtle border */
@@ -164,7 +164,7 @@ QTableWidget, QTreeView {
 QTableWidget::item, QTreeView::item {
 	background-color: rgb(30, 30, 30); /* Darker background */
 	color: rgb(230, 230, 230); /* Light gray text */
-	padding: 4px;
+	padding: 1px;
 }
 
 QTableWidget::item:selected, QTreeView::item:selected {

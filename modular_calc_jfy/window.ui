@@ -2,12 +2,15 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1261</width>
-    <height>1011</height>
+    <width>1135</width>
+    <height>776</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,7 +52,7 @@
        <widget class="QGroupBox" name="calculator">
         <property name="geometry">
          <rect>
-          <x>-1</x>
+          <x>0</x>
           <y>0</y>
           <width>460</width>
           <height>300</height>
@@ -550,7 +553,7 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>4</width>
+        <width>6</width>
         <height>20</height>
        </size>
       </property>
@@ -665,7 +668,7 @@
       </property>
       <property name="sizeHint" stdset="0">
        <size>
-        <width>4</width>
+        <width>6</width>
         <height>20</height>
        </size>
       </property>
@@ -678,7 +681,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1261</width>
+     <width>1135</width>
      <height>23</height>
     </rect>
    </property>

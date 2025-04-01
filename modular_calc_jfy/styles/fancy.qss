@@ -24,7 +24,7 @@ QTabBar::tab {
 	background-color: rgb(50, 50, 100); /* Dark blue tab background */
 	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
 	color: rgb(200, 255, 200); /* Light green text */
-	padding: 4px;
+	/* padding: 4px; */
 	border-radius: 6px;
 }
 
