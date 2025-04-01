@@ -126,3 +126,35 @@ QMenu::item:selected {
 	border-radius: 6px;
 	border-color: rgb(150, 150, 250); /* Brighter border */
 }
+
+QTableWidget {
+	background-color: rgb(40, 40, 80); /* Slightly lighter blue */
+	color: rgb(255, 255, 255); /* White text */
+	gridline-color: rgb(100, 100, 200); /* Vibrant blue grid lines */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+}
+
+QTableWidget::item {
+	background-color: rgb(50, 50, 100); /* Dark blue background for items */
+	color: rgb(200, 255, 200); /* Light green text */
+	padding: 4px;
+	border: 1px solid rgb(100, 100, 200); /* Subtle border for items */
+}
+
+QTableWidget::item:selected {
+	background-color: rgb(80, 80, 150); /* Brighter blue for selected items */
+	color: rgb(255, 255, 255); /* White text */
+	border: 1px solid rgb(150, 150, 250); /* Brighter border for selected items */
+}
+
+QHeaderView::section {
+	background-color: rgb(50, 50, 100); /* Dark blue background for headers */
+	color: rgb(255, 255, 255); /* White text */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+	padding: 4px;
+}
+
+QTableCornerButton::section {
+	background-color: rgb(50, 50, 100); /* Dark blue background */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+}
