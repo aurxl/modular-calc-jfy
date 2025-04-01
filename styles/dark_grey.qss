@@ -46,6 +46,11 @@ QPushButton:disabled {
 	border: 1px dashed rgb(50, 50, 50); /* Dashed border for disabled */
 }
 
+QPushButton:focus {
+	border-color: rgb(0, 120, 215); /* Bright blue border when focused */
+	background-color: rgb(35, 35, 45); /* Slightly brighter background */
+}
+
 QLineEdit, QSpinBox, QDateEdit, QDateTimeEdit, QComboBox {
 	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 	color: rgb(230, 230, 230); /* Light gray text */
@@ -54,6 +59,11 @@ QLineEdit, QSpinBox, QDateEdit, QDateTimeEdit, QComboBox {
 	padding: 4px 8px;
 	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
 	selection-color: rgb(255, 255, 255); /* White selection text */
+}
+
+QLineEdit:focus {
+	border-color: rgb(0, 120, 215); /* Bright blue border when focused */
+	background-color: rgb(25, 25, 35); /* Slightly darker background */
 }
 
 QLabel {

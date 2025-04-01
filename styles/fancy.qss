@@ -64,6 +64,11 @@ QPushButton:disabled {
 	border-color: rgb(100, 50, 100); /* Muted border */
 }
 
+QPushButton:focus {
+	border-color: rgb(0, 120, 215); /* Bright blue border when focused */
+	background-color: rgb(80, 80, 150); /* Slightly brighter blue background */
+}
+
 QLineEdit {
 	border-width: 2px;
 	border-radius: 6px;
@@ -72,6 +77,11 @@ QLineEdit {
 	background-color: rgb(50, 50, 100); /* Dark blue background */
 	selection-background-color: rgb(255, 200, 100); /* Warm orange selection */
 	selection-color: rgb(30, 30, 60); /* Deep blue selection text */
+}
+
+QLineEdit:focus {
+	border-color: rgb(0, 120, 215); /* Bright blue border when focused */
+	background-color: rgb(60, 60, 120); /* Slightly darker blue background */
 }
 
 QProgressBar {
