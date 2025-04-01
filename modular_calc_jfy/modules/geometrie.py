@@ -1,8 +1,16 @@
 import math
 
+class TriangleInvalidSitesError(Exception):
+    """Die Summe der Länge der Seiten b, c muss größer sein als die Länge der verbleibenden Seite a."""
+
+
 class Geometrie:
     @staticmethod
     def dreieck_umfang(a, b, c):
+        try:
+            assert (b + c > a) and (c + a > b) and (a + b > c)
+        except:
+            raise TriangleInvalidSitesError
         return a + b + c
     
     @staticmethod
@@ -11,11 +19,11 @@ class Geometrie:
     
     @staticmethod
     def kreis_umfang(radius):
-        return 2 * math.pi * radius
-    
+        return math.pi * radius
+
     @staticmethod
     def kreis_flaeche(radius):
-        return math.pi * radius ** 2
+        return math.pi*(radius/2)**2
     
     @staticmethod
     def parallelogramm_umfang(a, b):
