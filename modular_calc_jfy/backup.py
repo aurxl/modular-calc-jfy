@@ -48,6 +48,8 @@ class Backup:
 
         file_name, _ = QFileDialog.getSaveFileName(self.window, "Save File", "jfy-export.bin", "*.bin")
         
+        if not file_name: return
+
         string_io = StringIO()
         writer = csv.writer(string_io)
 
@@ -62,6 +64,9 @@ class Backup:
 
     def import_data(self):
         file_name, _ = QFileDialog.getOpenFileName(self.window, "Import", "", "*.bin")
+
+        if not file_name: return
+
         try:
             data = self.__decrypt_data(file_name).decode()
         except CompromisedDataError:

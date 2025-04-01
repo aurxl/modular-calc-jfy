@@ -1,0 +1,160 @@
+/*
+Colorful Fun Theme for QT Applications
+Adapted for modular-calc-jfy
+*/
+
+QWidget {
+	background-color: rgb(30, 30, 60); /* Deep blue background */
+	color: rgb(255, 255, 255); /* White text */
+	border-color: rgb(100, 100, 200); /* Vibrant border */
+}
+
+QPlainTextEdit {
+	background-color: rgb(40, 40, 80); /* Slightly lighter blue */
+	color: rgb(255, 200, 100); /* Warm orange text */
+	selection-background-color: rgb(255, 100, 150); /* Pink selection */
+	selection-color: rgb(255, 255, 255); /* White selection text */
+}
+
+QTabWidget::pane {
+	border-top: 2px solid rgb(100, 100, 200); /* Vibrant border */
+}
+
+QTabBar::tab {
+	background-color: rgb(50, 50, 100); /* Dark blue tab background */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+	color: rgb(200, 255, 200); /* Light green text */
+	/* padding: 4px; */
+	border-radius: 6px;
+}
+
+QTabBar::tab:selected, QTabBar::tab:hover {
+	background-color: rgb(80, 80, 150); /* Brighter blue for selected/hovered tabs */
+	color: rgb(255, 255, 255); /* White text */
+	border-color: rgb(150, 150, 250); /* Brighter border */
+}
+
+QTabBar::tab:!selected {
+	margin-bottom: 4px;
+}
+
+QPushButton {
+	border-style: solid;
+	border-width: 2px;
+	border-color: rgb(255, 100, 150); /* Pink border */
+	color: rgb(255, 255, 255); /* White text */
+	padding: 6px;
+	background-color: rgb(100, 50, 150); /* Purple button background */
+	border-radius: 8px;
+}
+
+QPushButton:hover {
+	background-color: rgb(150, 100, 200); /* Lighter purple on hover */
+	border-color: rgb(255, 150, 200); /* Lighter pink border */
+}
+
+QPushButton:pressed {
+	background-color: rgb(80, 40, 120); /* Darker purple on press */
+	border-color: rgb(200, 50, 100); /* Darker pink border */
+}
+
+QPushButton:disabled {
+	background-color: rgb(60, 30, 90); /* Muted purple for disabled */
+	color: rgb(150, 150, 150); /* Gray text */
+	border-color: rgb(100, 50, 100); /* Muted border */
+}
+
+QLineEdit {
+	border-width: 2px;
+	border-radius: 6px;
+	border-color: rgb(100, 200, 255); /* Bright cyan border */
+	color: rgb(255, 255, 255); /* White text */
+	background-color: rgb(50, 50, 100); /* Dark blue background */
+	selection-background-color: rgb(255, 200, 100); /* Warm orange selection */
+	selection-color: rgb(30, 30, 60); /* Deep blue selection text */
+}
+
+QProgressBar {
+	text-align: center;
+	color: rgb(255, 255, 255); /* White text */
+	border-width: 2px;
+	border-radius: 10px;
+	border-color: rgb(255, 150, 50); /* Bright orange border */
+	background-color: rgb(50, 50, 100); /* Dark blue background */
+}
+
+QProgressBar::chunk {
+	background-color: qlineargradient(spread:pad, x1:0.5, y1:0.7, x2:0.5, y2:0.3, stop:0 rgba(255, 100, 150, 255), stop:1 rgba(255, 200, 100, 255)); /* Gradient from pink to orange */
+	border-radius: 10px;
+}
+
+QMenuBar {
+	background-color: rgb(40, 40, 80); /* Slightly lighter blue */
+	color: rgb(255, 255, 255); /* White text */
+}
+
+QMenuBar::item {
+	spacing: 3px;
+	padding: 1px 4px;
+	background: transparent;
+	color: rgb(200, 255, 200); /* Light green text */
+}
+
+QMenuBar::item:selected {
+	background-color: rgb(80, 80, 150); /* Brighter blue */
+	color: rgb(255, 255, 255); /* White text */
+}
+
+QMenu {
+	border-width: 2px;
+	border-radius: 10px;
+	border-color: rgb(255, 100, 150); /* Pink border */
+	background-color: rgb(50, 50, 100); /* Dark blue background */
+	color: rgb(255, 255, 255); /* White text */
+}
+
+QMenu::item {
+	spacing: 3px;
+	padding: 3px 15px;
+	color: rgb(200, 255, 200); /* Light green text */
+}
+
+QMenu::item:selected {
+	background-color: rgb(80, 80, 150); /* Brighter blue */
+	color: rgb(255, 255, 255); /* White text */
+	border-width: 1px;
+	border-radius: 6px;
+	border-color: rgb(150, 150, 250); /* Brighter border */
+}
+
+QTableWidget {
+	background-color: rgb(40, 40, 80); /* Slightly lighter blue */
+	color: rgb(255, 255, 255); /* White text */
+	gridline-color: rgb(100, 100, 200); /* Vibrant blue grid lines */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+}
+
+QTableWidget::item {
+	background-color: rgb(50, 50, 100); /* Dark blue background for items */
+	color: rgb(200, 255, 200); /* Light green text */
+	padding: 4px;
+	border: 1px solid rgb(100, 100, 200); /* Subtle border for items */
+}
+
+QTableWidget::item:selected {
+	background-color: rgb(80, 80, 150); /* Brighter blue for selected items */
+	color: rgb(255, 255, 255); /* White text */
+	border: 1px solid rgb(150, 150, 250); /* Brighter border for selected items */
+}
+
+QHeaderView::section {
+	background-color: rgb(50, 50, 100); /* Dark blue background for headers */
+	color: rgb(255, 255, 255); /* White text */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+	padding: 4px;
+}
+
+QTableCornerButton::section {
+	background-color: rgb(50, 50, 100); /* Dark blue background */
+	border: 1px solid rgb(100, 100, 200); /* Vibrant border */
+}

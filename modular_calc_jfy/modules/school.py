@@ -1,11 +1,9 @@
 class SchoolGrades:
     @staticmethod
-    def calculate(*args) -> dict:
+    def calculate(grades:list) -> dict:
         """Berechnet die Noten und gibt sie als Dictionary zurück."""
-        if not args:
+        if not grades:
             raise ValueError("Es wurden keine Noten übergeben.")
-        
-        grades = list(args)
 
         # Überprüfung, ob alle Werte Zahlen sind
         try:

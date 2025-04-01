@@ -1,0 +1,206 @@
+/*
+Stylish Fancy Light Theme for QT Applications
+Adapted for modular-calc-jfy
+*/
+
+QWidget {
+	background-color: rgb(250, 250, 250); /* Soft white background */
+	color: rgb(30, 30, 30); /* Dark gray text for contrast */
+	border: none;
+}
+
+QMainWindow, QDialog {
+	background-color: rgb(245, 245, 245); /* Slightly off-white background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QTextEdit, QPlainTextEdit {
+	background-color: rgb(255, 255, 255); /* Pure white background */
+	color: rgb(40, 40, 40); /* Slightly darker text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	border-radius: 6px;
+	padding: 6px;
+}
+
+QPushButton {
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	padding: 6px 12px;
+	background-color: rgb(240, 240, 240); /* Light gray background */
+	border-radius: 8px;
+}
+
+QPushButton:hover {
+	background-color: rgb(220, 220, 220); /* Slightly darker gray on hover */
+}
+
+QPushButton:pressed {
+	background-color: rgb(200, 200, 200); /* Even darker gray when pressed */
+}
+
+QPushButton:disabled {
+	color: rgb(150, 150, 150); /* Muted gray text */
+	background-color: rgb(240, 240, 240); /* Light gray background */
+	border: 1px dashed rgb(200, 200, 200); /* Dashed border for disabled */
+}
+
+QLineEdit, QSpinBox, QDateEdit, QDateTimeEdit, QComboBox {
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	background-color: rgb(255, 255, 255); /* White background */
+	border-radius: 6px;
+	padding: 4px 8px;
+	selection-background-color: rgb(180, 215, 255); /* Light blue selection */
+	selection-color: rgb(30, 30, 30); /* Dark gray selection text */
+}
+
+QLabel {
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QProgressBar {
+	text-align: center;
+	color: rgb(30, 30, 30); /* Dark gray text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	border-radius: 6px;
+	background-color: rgb(240, 240, 240); /* Light gray background */
+}
+
+QProgressBar::chunk {
+	background-color: rgb(100, 150, 200); /* Soft blue chunk */
+	border-radius: 6px;
+}
+
+QMenuBar {
+	background-color: rgb(245, 245, 245); /* Light gray background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QMenuBar::item {
+	padding: 4px 8px;
+	color: rgb(30, 30, 30); /* Dark gray text */
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background-color: rgb(220, 220, 220); /* Slightly darker gray */
+}
+
+QMenu {
+	background-color: rgb(255, 255, 255); /* White background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+}
+
+QMenu::item {
+	padding: 6px 12px;
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QMenu::item:selected {
+	background-color: rgb(220, 220, 220); /* Slightly darker gray */
+}
+
+QTabWidget {
+	background-color: rgb(245, 245, 245); /* Light gray background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QTabWidget::pane {
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	background-color: rgb(255, 255, 255); /* White background */
+}
+
+QTabBar::tab {
+	padding: 6px 12px;
+	color: rgb(30, 30, 30); /* Dark gray text */
+	background-color: rgb(240, 240, 240); /* Light gray background */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	border-radius: 6px;
+}
+
+QTabBar::tab:selected {
+	background-color: rgb(220, 220, 220); /* Slightly darker gray */
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px;
+}
+
+QCheckBox, QRadioButton {
+	color: rgb(30, 30, 30); /* Dark gray text */
+	padding: 2px;
+}
+
+QCheckBox:hover, QRadioButton:hover {
+	background-color: rgb(220, 220, 220); /* Slightly darker gray */
+	border: 1px solid rgb(180, 180, 180); /* Light gray border */
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+	background-color: rgb(100, 150, 200); /* Soft blue */
+	border: 1px solid rgb(180, 180, 180); /* Light gray border */
+}
+
+QCheckBox::indicator:unchecked, QRadioButton::indicator:unchecked {
+	background-color: rgb(255, 255, 255); /* White */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+}
+
+QStatusBar {
+	color: rgb(30, 30, 30); /* Dark gray text */
+	background-color: rgb(245, 245, 245); /* Light gray background */
+}
+
+QTableWidget, QTreeView {
+	background-color: rgb(255, 255, 255); /* White background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	gridline-color: rgb(200, 200, 200); /* Light gray grid lines */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+}
+
+QTableWidget::item, QTreeView::item {
+	background-color: rgb(255, 255, 255); /* White background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	padding: 4px;
+}
+
+QTableWidget::item:selected, QTreeView::item:selected {
+	background-color: rgb(180, 215, 255); /* Light blue selection */
+	color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QHeaderView::section {
+	background-color: rgb(240, 240, 240); /* Light gray background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	padding: 4px;
+}
+
+QTableCornerButton::section {
+	background-color: rgb(240, 240, 240); /* Light gray background */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+}
+
+QComboBox QAbstractItemView {
+	background-color: rgb(255, 255, 255); /* White dropdown background */
+	color: rgb(30, 30, 30); /* Dark gray text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	selection-background-color: rgb(180, 215, 255); /* Light blue selection */
+	selection-color: rgb(30, 30, 30); /* Dark gray text */
+}
+
+QGroupBox {
+	color: rgb(30, 30, 30); /* Dark gray text */
+	border: 1px solid rgb(200, 200, 200); /* Light gray border */
+	border-radius: 6px;
+	margin-top: 10px;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	padding: 2px 5px;
+	color: rgb(30, 30, 30); /* Dark gray text */
+	background-color: rgb(245, 245, 245); /* Light gray background */
+}

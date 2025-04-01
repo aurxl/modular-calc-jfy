@@ -1,0 +1,208 @@
+/*
+Balanced Modern Dark Mode Theme for QT Applications
+Adapted for modular-calc-jfy
+*/
+
+QWidget {
+	background-color: rgb(20, 20, 20); /* Deep dark background */
+	color: rgb(230, 230, 230); /* Light gray text for readability */
+	border: none;
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White selection text */
+}
+
+QMainWindow, QDialog {
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QTextEdit, QPlainTextEdit {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(240, 240, 240); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	padding: 6px;
+}
+
+QPushButton {
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	color: rgb(230, 230, 230); /* Light gray text */
+	padding: 6px 12px;
+	background-color: rgb(35, 35, 35); /* Button background */
+	border-radius: 8px;
+}
+
+QPushButton:hover {
+	background-color: rgb(45, 45, 45); /* Slightly lighter on hover */
+}
+
+QPushButton:pressed {
+	background-color: rgb(25, 25, 25); /* Darker when pressed */
+}
+
+QPushButton:disabled {
+	color: rgb(120, 120, 120); /* Muted text */
+	background-color: rgb(35, 35, 35); /* Button background */
+	border: 1px dashed rgb(50, 50, 50); /* Dashed border for disabled */
+}
+
+QLineEdit, QSpinBox, QDateEdit, QDateTimeEdit, QComboBox {
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(30, 30, 30); /* Input background */
+	border-radius: 6px;
+	padding: 4px 8px;
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White selection text */
+}
+
+QLabel {
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QProgressBar {
+	text-align: center;
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	background-color: rgb(30, 30, 30); /* Background */
+}
+
+QProgressBar::chunk {
+	background-color: rgb(70, 70, 70); /* Neutral gray chunk */
+	border-radius: 6px;
+}
+
+QMenuBar {
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QMenuBar::item {
+	padding: 4px 8px;
+	color: rgb(230, 230, 230); /* Light gray text */
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+}
+
+QMenu {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QMenu::item {
+	padding: 6px 12px;
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QMenu::item:selected {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+}
+
+QTabWidget {
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QTabWidget::pane {
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	background-color: rgb(30, 30, 30); /* Darker background */
+}
+
+QTabBar::tab {
+	 /* padding: 6px 12px; */
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(35, 35, 35); /* Tab background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+}
+
+QTabBar::tab:selected {
+	background-color: rgb(45, 45, 45); /* Medium dark selection */
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px;
+}
+
+QCheckBox, QRadioButton {
+	color: rgb(230, 230, 230); /* Light gray text */
+	padding: 2px;
+}
+
+QCheckBox:hover, QRadioButton:hover {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+	background-color: rgb(70, 70, 70); /* Neutral gray */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QCheckBox::indicator:unchecked, QRadioButton::indicator:unchecked {
+	background-color: rgb(30, 30, 30); /* Input background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QStatusBar {
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+}
+
+QTableWidget, QTreeView {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	gridline-color: rgb(50, 50, 50); /* Subtle grid lines */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QTableWidget::item, QTreeView::item {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	padding: 1px;
+}
+
+QTableWidget::item:selected, QTreeView::item:selected {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+	color: rgb(255, 255, 255); /* White text */
+}
+
+QHeaderView::section {
+	background-color: rgb(35, 35, 35); /* Tab background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	padding: 4px;
+}
+
+QTableCornerButton::section {
+	background-color: rgb(35, 35, 35); /* Tab background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+}
+
+QComboBox QAbstractItemView {
+	background-color: rgb(30, 30, 30); /* Input background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White text */
+}
+
+QGroupBox {
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	margin-top: 10px;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	padding: 2px 5px;
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+}
