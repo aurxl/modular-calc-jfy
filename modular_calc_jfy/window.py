@@ -95,6 +95,7 @@ class ModuleHandler:
         self.modules[module_name] = module_ui
         self.stacked_widget.setCurrentWidget(module_ui)
         self.main_window.setWindowTitle(f"Rechnerprojekt - {Modules.TRANSLATION.value[module_name]}")
+        self.main_window.current_input_field.setFocus()
 
 class ThemeFontHandler:
     def __init__(self, app):
@@ -230,6 +231,14 @@ class MainWindow(QtWidgets.QMainWindow):
             field.focusInEvent = lambda _, f=field: self.set_current_input_field(f)
         self.current_input_field = input_fields[0]
         self.current_result_field = result_field
+        self.current_input_field.setFocus()
+
+    def set_current_input_field(self, object):
+        if self.current_input_field != object: self.current_input = ""
+        self.current_input_field = object
+        self.current_input_field.textChanged.connect(self.update_input)
+        self.current_input_field.returnPressed.connect(self.calc_factory)
+        self.current_input_field.setFocus()
 
     def connect_buttons(self, button_mapping):
         for button, function in button_mapping.items():
@@ -237,12 +246,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def update_input(self):
         self.current_input = self.current_input_field.text()
+        self.current_input_field.setFocus()
 
     def add_to_input(self, value):
         if self.current_calculate == Modules.SCHOOL and self.current_input != "":
             value = f",{value}"
         self.current_input += value
         self.current_input_field.setText(self.current_input)
+        # self.current_input_field.setFocus()
 
     def calc_factory(self):
         match self.current_calculate:
@@ -337,6 +348,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.current_input = ""
         self.current_input_field = self.input_field
+        self.current_input_field.returnPressed.connect(self.calc_factory)
+        self.current_input_field.setFocus()
         self.current_calculate = Modules.CALCULATOR
 
     def setup_percentage_module(self, module_ui):
@@ -368,11 +381,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.on_percentage_function_changed(0)
         self.current_calculate = Modules.PERCENTAGE
 
-    def set_current_input_field(self, object):
-        self.current_input = ""
-        self.current_input_field = object
-        self.current_input_field.textChanged.connect(self.update_input)
-
     def on_percentage_function_changed(self, index):
         """Ändert die angezeigten Eingabefelder je nach ausgewählter Funktion."""
         self.stacked_inputs.setCurrentIndex(index)
@@ -394,6 +402,7 @@ class MainWindow(QtWidgets.QMainWindow):
             case _:
                 self.current_input_field = None
         self.current_input = ""
+        self.current_input_field.setFocus()
 
     def calculate_percentage(self):
         """Berechnet das Ergebnis basierend auf der ausgewählten Funktion und den Eingabewerten."""
@@ -490,9 +499,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.info_ui.current_view = index
         if index == 1:
             self.current_input_field = self.info_ui.input_sub_value_2
+        else:
+            self.current_input_field = self.info_ui.input_add_value_2
         
         self.current_input = ""
-        
+        self.current_input_field.setFocus()
+
     def calculate_number_systems(self):
         """Berechnet die Umwandlung zwischen verschiedenen Zahlensystemen."""
         try:
@@ -563,6 +575,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.setup_input_fields([self.school_ui.input], self.school_ui.result)
         self.current_input_field = self.school_ui.input
+        self.current_input_field.setFocus()
         self.current_calculate = Modules.SCHOOL
 
     def school_calculate(self):
@@ -604,6 +617,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.current_input_field.textChanged.connect(self.update_input)
 
         self.current_input = ""
+        self.current_input_field.setFocus()
 
     def about_team(self):
         QtWidgets.QMessageBox.information(self, "Über das Team", "Sarah Zimmermann\nKenny Schilde\nTommy Pahlitzsch\nJan Meineke")
