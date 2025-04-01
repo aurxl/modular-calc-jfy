@@ -23,7 +23,7 @@ def determine_MEIPASS(path:str):
 UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/window.ui"
 AUX_UI_FILE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/aux_calc.ui"
 
-DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_blue.qss"
+DARK_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/dark_grey.qss"
 LIGHT_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/light.qss"
 FANCY_STYLE = f"{determine_MEIPASS(Path(__file__).parent.resolve())}/styles/fancy.qss"
 PERCENTAGE_UI_FILE= f"{determine_MEIPASS(Path(__file__).parent.resolve())}/percentage_module.ui"
@@ -82,6 +82,7 @@ class ModuleHandler:
     def load_module(self, module_name, ui_file, setup_function):
         if module_name in self.modules:
             self.stacked_widget.setCurrentWidget(self.modules[module_name])
+            setup_function(self.modules[module_name])
             return
 
         module_ui = QtWidgets.QWidget()
@@ -253,6 +254,7 @@ class MainWindow(QtWidgets.QMainWindow):
                     self.calculate_bit_byte()
                 else:
                     self.calculate_number_systems()
+        self.current_input_field.setText("")
 
     def calculate(self):
         try:
@@ -558,11 +560,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.school_ui = module_ui
 
         self.setup_input_fields([self.school_ui.input], self.school_ui.result)
+        self.current_input_field = self.school_ui.input
         self.current_calculate = Modules.SCHOOL
 
     def school_calculate(self):
         try:
-            
             result = SchoolGrades.calculate(self.current_input.split(","))
             self.school_ui.result.setText(f"Anzahl: {result['count']}\nSumme: {result['sum']}\nDurchschnitt: {result['avg']}")
             self.add_to_results_table(input_value=self.current_input, result=str(result), module_name="Schulnotenrechner")
@@ -592,7 +594,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.module_handler.load_module("credit", CREDIT_UI_FILE, self.setup_credit_module)
         elif value == Modules.TRANSLATION.value[Modules.SCHOOL.value]:
             self.module_handler.load_module("school", SCHOOL_UI_FILE, self.setup_school_module)
-            self.current_input_field.textChanged.connect(self.update_input)
+            # self.current_input_field.textChanged.connect(self.update_input)
         elif value == Modules.TRANSLATION.value[Modules.MATH.value]:
             pass
         else:

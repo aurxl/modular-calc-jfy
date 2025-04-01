@@ -1,212 +1,208 @@
 /*
-GNOME Dark Theme Style Sheet for QT Applications
+Balanced Modern Dark Mode Theme for QT Applications
 Adapted for modular-calc-jfy
 */
 
-QMainWindow {
-	background-color: rgb(35, 38, 41); /* GNOME dark background */
-	color: rgb(211, 215, 207); /* GNOME text color */
+QWidget {
+	background-color: rgb(20, 20, 20); /* Deep dark background */
+	color: rgb(230, 230, 230); /* Light gray text for readability */
+	border: none;
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White selection text */
 }
 
-QTextEdit {
-	background-color: rgb(29, 31, 33); /* Slightly darker background */
-	color: rgb(211, 215, 207); /* GNOME text color */
+QMainWindow, QDialog {
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
+}
+
+QTextEdit, QPlainTextEdit {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(240, 240, 240); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	padding: 6px;
 }
 
 QPushButton {
-	border-style: solid;
-	border-width: 1px;
-	border-color: rgb(85, 87, 83); /* GNOME button border */
-	color: rgb(211, 215, 207); /* GNOME button text */
-	padding: 4px;
-	background-color: rgb(48, 52, 54); /* GNOME button background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	color: rgb(230, 230, 230); /* Light gray text */
+	padding: 6px 12px;
+	background-color: rgb(35, 35, 35); /* Button background */
+	border-radius: 8px;
 }
 
 QPushButton:hover {
-	background-color: rgb(85, 87, 83); /* GNOME hover effect */
+	background-color: rgb(45, 45, 45); /* Slightly lighter on hover */
 }
 
 QPushButton:pressed {
-	background-color: rgb(68, 71, 73); /* GNOME pressed effect */
+	background-color: rgb(25, 25, 25); /* Darker when pressed */
 }
 
 QPushButton:disabled {
-	color: rgb(136, 138, 133); /* GNOME disabled text */
-	background-color: rgb(48, 52, 54); /* GNOME disabled background */
+	color: rgb(120, 120, 120); /* Muted text */
+	background-color: rgb(35, 35, 35); /* Button background */
+	border: 1px dashed rgb(50, 50, 50); /* Dashed border for disabled */
 }
 
-QLineEdit {
-	border-width: 1px;
-	border-radius: 4px;
-	border-color: rgb(85, 87, 83); /* GNOME input border */
-	color: rgb(211, 215, 207); /* GNOME input text */
-	background-color: rgb(29, 31, 33); /* GNOME input background */
-	selection-background-color: rgb(85, 87, 83); /* GNOME selection */
-	selection-color: rgb(211, 215, 207); /* GNOME selection text */
+QLineEdit, QSpinBox, QDateEdit, QDateTimeEdit, QComboBox {
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(30, 30, 30); /* Input background */
+	border-radius: 6px;
+	padding: 4px 8px;
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White selection text */
 }
 
 QLabel {
-	color: rgb(211, 215, 207); /* GNOME label text */
+	color: rgb(230, 230, 230); /* Light gray text */
 }
 
 QProgressBar {
 	text-align: center;
-	color: rgb(211, 215, 207); /* GNOME progress text */
-	border-width: 1px;
-	border-radius: 4px;
-	border-color: rgb(85, 87, 83); /* GNOME progress border */
-	background-color: rgb(29, 31, 33); /* GNOME progress background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	background-color: rgb(30, 30, 30); /* Background */
 }
 
 QProgressBar::chunk {
-	background-color: rgb(85, 87, 83); /* GNOME progress chunk */
-	border-radius: 4px;
+	background-color: rgb(70, 70, 70); /* Neutral gray chunk */
+	border-radius: 6px;
 }
 
 QMenuBar {
-	background-color: rgb(35, 38, 41); /* GNOME menu bar background */
-	color: rgb(211, 215, 207); /* GNOME menu bar text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
 }
 
 QMenuBar::item {
-	color: rgb(211, 215, 207); /* GNOME menu bar text */
-	padding: 4px;
+	padding: 4px 8px;
+	color: rgb(230, 230, 230); /* Light gray text */
 	background: transparent;
 }
 
 QMenuBar::item:selected {
-	background-color: rgb(85, 87, 83); /* GNOME menu bar selected */
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
 }
 
 QMenu {
-	background-color: rgb(29, 31, 33); /* GNOME menu background */
-	color: rgb(211, 215, 207); /* GNOME menu text */
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
 QMenu::item {
-	padding: 4px 8px;
-	background-color: transparent;
-	color: rgb(211, 215, 207); /* GNOME menu item text */
+	padding: 6px 12px;
+	color: rgb(230, 230, 230); /* Light gray text */
 }
 
 QMenu::item:selected {
-	background-color: rgb(85, 87, 83); /* GNOME menu item selected */
-	color: rgb(211, 215, 207); /* GNOME menu item text */
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
 }
 
 QTabWidget {
-	background-color: rgb(35, 38, 41); /* GNOME tab widget background */
-	color: rgb(211, 215, 207); /* GNOME tab text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
+	color: rgb(230, 230, 230); /* Light gray text */
 }
 
 QTabWidget::pane {
-	border: 1px solid rgb(85, 87, 83); /* GNOME tab pane border */
-	background-color: rgb(29, 31, 33); /* GNOME tab pane background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	background-color: rgb(30, 30, 30); /* Darker background */
 }
 
 QTabBar::tab {
-	padding: 4px;
-	color: rgb(211, 215, 207); /* GNOME tab text */
-	background-color: rgb(48, 52, 54); /* GNOME tab background */
-	border: 1px solid rgb(85, 87, 83); /* GNOME tab border */
-	border-top-left-radius: 4px;
-	border-top-right-radius: 4px;
+	padding: 6px 12px;
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(35, 35, 35); /* Tab background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
 }
 
 QTabBar::tab:selected {
-	background-color: rgb(85, 87, 83); /* GNOME selected tab */
-	color: rgb(211, 215, 207); /* GNOME selected tab text */
+	background-color: rgb(45, 45, 45); /* Medium dark selection */
 }
 
 QTabBar::tab:!selected {
 	margin-top: 2px;
 }
 
-QCheckBox {
-	color: rgb(211, 215, 207); /* GNOME checkbox text */
+QCheckBox, QRadioButton {
+	color: rgb(230, 230, 230); /* Light gray text */
 	padding: 2px;
 }
 
-QCheckBox:hover {
-	background-color: rgb(85, 87, 83); /* GNOME checkbox hover */
-	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox hover border */
+QCheckBox:hover, QRadioButton:hover {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
-QCheckBox::indicator:checked {
-	background-color: rgb(85, 87, 83); /* GNOME checkbox checked */
-	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox checked border */
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+	background-color: rgb(70, 70, 70); /* Neutral gray */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
-QCheckBox::indicator:unchecked {
-	background-color: rgb(211, 215, 207); /* GNOME checkbox unchecked */
-	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox unchecked border */
+QCheckBox::indicator:unchecked, QRadioButton::indicator:unchecked {
+	background-color: rgb(30, 30, 30); /* Input background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
 QStatusBar {
-	color: rgb(211, 215, 207); /* GNOME status bar text */
-	background-color: rgb(35, 38, 41); /* GNOME status bar background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
 }
 
-QTableWidget {
-	background-color: rgb(29, 31, 33); /* GNOME table background */
-	color: rgb(211, 215, 207); /* GNOME table text */
-	gridline-color: rgb(85, 87, 83); /* GNOME table grid lines */
-	border: 1px solid rgb(85, 87, 83); /* GNOME table border */
+QTableWidget, QTreeView {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	gridline-color: rgb(50, 50, 50); /* Subtle grid lines */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
-QTableWidget::item {
-	background-color: rgb(29, 31, 33); /* GNOME table item background */
-	color: rgb(211, 215, 207); /* GNOME table item text */
+QTableWidget::item, QTreeView::item {
+	background-color: rgb(30, 30, 30); /* Darker background */
+	color: rgb(230, 230, 230); /* Light gray text */
 	padding: 4px;
 }
 
-QTableWidget::item:selected {
-	background-color: rgb(85, 87, 83); /* GNOME table item selected background */
-	color: rgb(211, 215, 207); /* GNOME table item selected text */
+QTableWidget::item:selected, QTreeView::item:selected {
+	background-color: rgb(50, 50, 50); /* Medium dark selection */
+	color: rgb(255, 255, 255); /* White text */
 }
 
 QHeaderView::section {
-	background-color: rgb(48, 52, 54); /* GNOME table header background */
-	color: rgb(211, 215, 207); /* GNOME table header text */
-	border: 1px solid rgb(85, 87, 83); /* GNOME table header border */
+	background-color: rgb(35, 35, 35); /* Tab background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 	padding: 4px;
 }
 
 QTableCornerButton::section {
-	background-color: rgb(48, 52, 54); /* GNOME table corner button background */
-	border: 1px solid rgb(85, 87, 83); /* GNOME table corner button border */
-}
-
-QComboBox {
-	background-color: rgb(29, 31, 33); /* GNOME combobox background */
-	color: rgb(211, 215, 207); /* GNOME combobox text */
-	border: 1px solid rgb(85, 87, 83); /* GNOME combobox border */
-	border-radius: 4px;
-	padding: 4px;
-}
-
-QComboBox:hover {
-	background-color: rgb(48, 52, 54); /* GNOME combobox hover background */
-}
-
-QComboBox::drop-down {
-	subcontrol-origin: padding;
-	subcontrol-position: top right;
-	width: 20px;
-	border-left: 1px solid rgb(85, 87, 83); /* GNOME combobox dropdown border */
-	background-color: rgb(48, 52, 54); /* GNOME combobox dropdown background */
-}
-
-QComboBox::down-arrow {
-	image: url(:/icons/arrow-down.svg); /* Replace with a valid arrow-down icon path */
-	width: 10px;
-	height: 10px;
+	background-color: rgb(35, 35, 35); /* Tab background */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
 }
 
 QComboBox QAbstractItemView {
-	background-color: rgb(29, 31, 33); /* GNOME combobox dropdown list background */
-	color: rgb(211, 215, 207); /* GNOME combobox dropdown list text */
-	border: 1px solid rgb(85, 87, 83); /* GNOME combobox dropdown list border */
-	selection-background-color: rgb(85, 87, 83); /* GNOME combobox dropdown selected background */
-	selection-color: rgb(211, 215, 207); /* GNOME combobox dropdown selected text */
+	background-color: rgb(30, 30, 30); /* Input background */
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	selection-background-color: rgb(50, 50, 50); /* Medium dark selection */
+	selection-color: rgb(255, 255, 255); /* White text */
+}
+
+QGroupBox {
+	color: rgb(230, 230, 230); /* Light gray text */
+	border: 1px solid rgb(50, 50, 50); /* Subtle border */
+	border-radius: 6px;
+	margin-top: 10px;
+}
+
+QGroupBox::title {
+	subcontrol-origin: margin;
+	subcontrol-position: top left;
+	padding: 2px 5px;
+	color: rgb(230, 230, 230); /* Light gray text */
+	background-color: rgb(25, 25, 25); /* Slightly lighter dark background */
 }

@@ -1,0 +1,212 @@
+/*
+GNOME Dark Theme Style Sheet for QT Applications
+Adapted for modular-calc-jfy
+*/
+
+QMainWindow {
+	background-color: rgb(35, 38, 41); /* GNOME dark background */
+	color: rgb(211, 215, 207); /* GNOME text color */
+}
+
+QTextEdit {
+	background-color: rgb(29, 31, 33); /* Slightly darker background */
+	color: rgb(211, 215, 207); /* GNOME text color */
+}
+
+QPushButton {
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgb(85, 87, 83); /* GNOME button border */
+	color: rgb(211, 215, 207); /* GNOME button text */
+	padding: 4px;
+	background-color: rgb(48, 52, 54); /* GNOME button background */
+}
+
+QPushButton:hover {
+	background-color: rgb(85, 87, 83); /* GNOME hover effect */
+}
+
+QPushButton:pressed {
+	background-color: rgb(68, 71, 73); /* GNOME pressed effect */
+}
+
+QPushButton:disabled {
+	color: rgb(136, 138, 133); /* GNOME disabled text */
+	background-color: rgb(48, 52, 54); /* GNOME disabled background */
+}
+
+QLineEdit {
+	border-width: 1px;
+	border-radius: 4px;
+	border-color: rgb(85, 87, 83); /* GNOME input border */
+	color: rgb(211, 215, 207); /* GNOME input text */
+	background-color: rgb(29, 31, 33); /* GNOME input background */
+	selection-background-color: rgb(85, 87, 83); /* GNOME selection */
+	selection-color: rgb(211, 215, 207); /* GNOME selection text */
+}
+
+QLabel {
+	color: rgb(211, 215, 207); /* GNOME label text */
+}
+
+QProgressBar {
+	text-align: center;
+	color: rgb(211, 215, 207); /* GNOME progress text */
+	border-width: 1px;
+	border-radius: 4px;
+	border-color: rgb(85, 87, 83); /* GNOME progress border */
+	background-color: rgb(29, 31, 33); /* GNOME progress background */
+}
+
+QProgressBar::chunk {
+	background-color: rgb(85, 87, 83); /* GNOME progress chunk */
+	border-radius: 4px;
+}
+
+QMenuBar {
+	background-color: rgb(35, 38, 41); /* GNOME menu bar background */
+	color: rgb(211, 215, 207); /* GNOME menu bar text */
+}
+
+QMenuBar::item {
+	color: rgb(211, 215, 207); /* GNOME menu bar text */
+	padding: 4px;
+	background: transparent;
+}
+
+QMenuBar::item:selected {
+	background-color: rgb(85, 87, 83); /* GNOME menu bar selected */
+}
+
+QMenu {
+	background-color: rgb(29, 31, 33); /* GNOME menu background */
+	color: rgb(211, 215, 207); /* GNOME menu text */
+}
+
+QMenu::item {
+	padding: 4px 8px;
+	background-color: transparent;
+	color: rgb(211, 215, 207); /* GNOME menu item text */
+}
+
+QMenu::item:selected {
+	background-color: rgb(85, 87, 83); /* GNOME menu item selected */
+	color: rgb(211, 215, 207); /* GNOME menu item text */
+}
+
+QTabWidget {
+	background-color: rgb(35, 38, 41); /* GNOME tab widget background */
+	color: rgb(211, 215, 207); /* GNOME tab text */
+}
+
+QTabWidget::pane {
+	border: 1px solid rgb(85, 87, 83); /* GNOME tab pane border */
+	background-color: rgb(29, 31, 33); /* GNOME tab pane background */
+}
+
+QTabBar::tab {
+	padding: 4px;
+	color: rgb(211, 215, 207); /* GNOME tab text */
+	background-color: rgb(48, 52, 54); /* GNOME tab background */
+	border: 1px solid rgb(85, 87, 83); /* GNOME tab border */
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+QTabBar::tab:selected {
+	background-color: rgb(85, 87, 83); /* GNOME selected tab */
+	color: rgb(211, 215, 207); /* GNOME selected tab text */
+}
+
+QTabBar::tab:!selected {
+	margin-top: 2px;
+}
+
+QCheckBox {
+	color: rgb(211, 215, 207); /* GNOME checkbox text */
+	padding: 2px;
+}
+
+QCheckBox:hover {
+	background-color: rgb(85, 87, 83); /* GNOME checkbox hover */
+	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox hover border */
+}
+
+QCheckBox::indicator:checked {
+	background-color: rgb(85, 87, 83); /* GNOME checkbox checked */
+	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox checked border */
+}
+
+QCheckBox::indicator:unchecked {
+	background-color: rgb(211, 215, 207); /* GNOME checkbox unchecked */
+	border: 1px solid rgb(136, 138, 133); /* GNOME checkbox unchecked border */
+}
+
+QStatusBar {
+	color: rgb(211, 215, 207); /* GNOME status bar text */
+	background-color: rgb(35, 38, 41); /* GNOME status bar background */
+}
+
+QTableWidget {
+	background-color: rgb(29, 31, 33); /* GNOME table background */
+	color: rgb(211, 215, 207); /* GNOME table text */
+	gridline-color: rgb(85, 87, 83); /* GNOME table grid lines */
+	border: 1px solid rgb(85, 87, 83); /* GNOME table border */
+}
+
+QTableWidget::item {
+	background-color: rgb(29, 31, 33); /* GNOME table item background */
+	color: rgb(211, 215, 207); /* GNOME table item text */
+	padding: 4px;
+}
+
+QTableWidget::item:selected {
+	background-color: rgb(85, 87, 83); /* GNOME table item selected background */
+	color: rgb(211, 215, 207); /* GNOME table item selected text */
+}
+
+QHeaderView::section {
+	background-color: rgb(48, 52, 54); /* GNOME table header background */
+	color: rgb(211, 215, 207); /* GNOME table header text */
+	border: 1px solid rgb(85, 87, 83); /* GNOME table header border */
+	padding: 4px;
+}
+
+QTableCornerButton::section {
+	background-color: rgb(48, 52, 54); /* GNOME table corner button background */
+	border: 1px solid rgb(85, 87, 83); /* GNOME table corner button border */
+}
+
+QComboBox {
+	background-color: rgb(29, 31, 33); /* GNOME combobox background */
+	color: rgb(211, 215, 207); /* GNOME combobox text */
+	border: 1px solid rgb(85, 87, 83); /* GNOME combobox border */
+	border-radius: 4px;
+	padding: 4px;
+}
+
+QComboBox:hover {
+	background-color: rgb(48, 52, 54); /* GNOME combobox hover background */
+}
+
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 20px;
+	border-left: 1px solid rgb(85, 87, 83); /* GNOME combobox dropdown border */
+	background-color: rgb(48, 52, 54); /* GNOME combobox dropdown background */
+}
+
+QComboBox::down-arrow {
+	image: url(:/icons/arrow-down.svg); /* Replace with a valid arrow-down icon path */
+	width: 10px;
+	height: 10px;
+}
+
+QComboBox QAbstractItemView {
+	background-color: rgb(29, 31, 33); /* GNOME combobox dropdown list background */
+	color: rgb(211, 215, 207); /* GNOME combobox dropdown list text */
+	border: 1px solid rgb(85, 87, 83); /* GNOME combobox dropdown list border */
+	selection-background-color: rgb(85, 87, 83); /* GNOME combobox dropdown selected background */
+	selection-color: rgb(211, 215, 207); /* GNOME combobox dropdown selected text */
+}
