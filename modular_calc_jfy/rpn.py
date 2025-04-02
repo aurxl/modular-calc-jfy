@@ -45,7 +45,7 @@ class ReversePolishNotation:
         operator_stack = []
         unary_condition = True
 
-        for token in tokens:
+        for i, token in enumerate(tokens):
             if cls.__is_number(token):
                 output_queue.append(token)
                 unary_condition = False
@@ -57,6 +57,8 @@ class ReversePolishNotation:
                 operator_stack.append(token)
                 unary_condition = True
             elif token == "(":
+                if output_queue and cls.__is_number(output_queue[-1]):
+                    operator_stack.append("*")
                 operator_stack.append(token)
                 unary_condition = True
             elif token == ")":
@@ -64,6 +66,10 @@ class ReversePolishNotation:
                     output_queue.append(operator_stack.pop())
                 operator_stack.pop()
                 unary_condition = False
+                if i+1 < len(tokens) and cls.__is_number(tokens[i+1]) or tokens[i+1] == "(":
+                        operator_stack.append("*")
+            else:
+                raise ValueError(f"Unexpected token {token}.")
         while operator_stack:
             output_queue.append(operator_stack.pop())
  

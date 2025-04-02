@@ -30,11 +30,16 @@ class Calculator:
 
     @staticmethod
     def __validate_expression(expression: str="") -> str:
-        valid_expression_pattern = "^[0-9\.+\-*()\/\s]+$"
+        valid_expression_pattern = r'([0-9\.+\-*\(\)\/\s]+)'
         
+        pattern_matches = list(filter(None, re.split(valid_expression_pattern, expression)))
+
+        if len(pattern_matches) >= 2:
+            raise InvalidExpressionError(f"ungültiges Zeichen: {pattern_matches[1]}")
+
         if re.match(valid_expression_pattern, expression):
             return expression
-        raise InvalidExpressionError(f"Invalid Expression, please evaluate syntax:\n{expression}")
+        raise InvalidExpressionError(f"Ungültige Eingabe: {expression}")
 
     def get_last_operation(self) -> str:
         return self.last_operation
