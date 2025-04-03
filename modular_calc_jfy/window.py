@@ -281,6 +281,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def calculate(self):
         try:
+            print(1)
+            if self.current_input == "":
+                return
             self.calc_input = self.current_input
             result = str(round(self.calculator.calc(self.calc_input), 6))
             self.result_display.setText(result)

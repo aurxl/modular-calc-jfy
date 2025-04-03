@@ -45,6 +45,8 @@ class ReversePolishNotation:
         operator_stack = []
         unary_condition = True
 
+        print(tokens)
+
         for i, token in enumerate(tokens):
             if cls.__is_number(token):
                 output_queue.append(token)
@@ -90,6 +92,9 @@ class ReversePolishNotation:
         stack with -1. REPEAT.
         """
         eval_stack = []
+        if not rpn:
+            return
+        print(f"eval_stack: {eval_stack}")
 
         for token in rpn:
             if cls.__is_number(token):
