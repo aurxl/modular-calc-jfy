@@ -57,7 +57,7 @@ class ReversePolishNotation:
                 operator_stack.append(token)
                 unary_condition = True
             elif token == "(":
-                if output_queue and cls.__is_number(output_queue[-1]):
+                if output_queue and cls.__is_number(tokens[i-1]):
                     operator_stack.append("*")
                 operator_stack.append(token)
                 unary_condition = True
@@ -66,7 +66,10 @@ class ReversePolishNotation:
                     output_queue.append(operator_stack.pop())
                 operator_stack.pop()
                 unary_condition = False
-                if i+1 < len(tokens) and cls.__is_number(tokens[i+1]) or tokens[i+1] == "(":
+                if i+1 != len(tokens):
+                    if cls.__is_number(tokens[i+1]) or tokens[i+1] == "(":
+                        while operator_stack and cls.precedence.get(operator_stack[-1], -1) >= cls.precedence["*"]:
+                            output_queue.append(operator_stack.pop())
                         operator_stack.append("*")
             else:
                 raise ValueError(f"Unexpected token {token}.")
@@ -113,7 +116,7 @@ class ReversePolishNotation:
 
 
 if __name__ == "__main__":
-    expr = "-1+(-10/3*(15/10-2.033)-19*6.5/6)"
+    expr = "5(30-5)"
     rpn = ReversePolishNotation.build(expr)
 
     print(f"rpn: {''.join(rpn)}")
