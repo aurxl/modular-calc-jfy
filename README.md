@@ -70,6 +70,8 @@ Projektteilnehmer:
     ```
 
 #### build the project
+Configure modules that should be available within the exe in the `modules.yaml` file.
+
 To easily build our python project to wheel and .exe we can use the following:
 ``` sh
 poetry build
