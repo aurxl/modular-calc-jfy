@@ -37,9 +37,9 @@ class Calculator:
         if len(pattern_matches) >= 2:
             raise InvalidExpressionError(f"ungültiges Zeichen: {pattern_matches[1]}")
 
-        # if re.match(valid_expression_pattern, expression):
-        return expression
-        # raise InvalidExpressionError(f"Ungültige Eingabe: {expression}")
+        if re.match(valid_expression_pattern, expression):
+            return expression
+        raise InvalidExpressionError(f"Ungültige Eingabe: {expression}")
 
     def get_last_operation(self) -> str:
         return self.last_operation
